@@ -1,0 +1,28 @@
+# Ignore Angular build/cache files
+client/angular/cache/
+
+# Ignore TypeScript build files
+*.tsbuildinfo
+
+# Ignore JavaScript map files (source maps)
+*.js.map
+
+# Ignore Angular/Vite dependency files
+client/.angular/cache/
+client/dist/
+client/node_modules/
+
+# Ignore Vite build files
+client/vite/
+
+# Ignore VSCode workspace settings
+client/.vscode/
+
+# Ignore Webstorm s
+client/.idea
+server/.idea
+.idea
+
+# Ignore server BS
+server/.vs
+server/obj
