@@ -8,13 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './input-result.component.css'
 })
 export class InputResultComponent {
-  mathProblemValue: any = '';
-  @Output() userCalculations = new EventEmitter<number>();
+  @Output() userAnswerChange = new EventEmitter<number>();
 
-  handleUserInput($event:  any): void {
-    const inputElement = $event.target.value;
-    const value = inputElement;    
-    this.userCalculations.emit(value);
+  onInputChange(event: Event): void {
+    const inputValue = (event.target as HTMLInputElement).value;
+    const parsedValue = Number(inputValue);
+    if (!isNaN(parsedValue)) {
+      this.userAnswerChange.emit(parsedValue);
+    }
   }
-
 }

@@ -2,41 +2,38 @@
 <div class="container-md space-x-3 space-y-3">
 
     <div class="space-x-3 mb-3">
-        <math-op-button *ngFor="let mathOps of arithmeticOperations"
-            [label]="mathOps" 
-            [mathOperation]="mathOps" 
-            (clicked)="handleMathOperation(mathOps)" >
+        <math-op-button *ngFor="let operation of mathOperations"
+            [label]="operation" 
+            [mathOperation]="operation" 
+            (clicked)="onOperationChange(operation)" >
         </math-op-button>
     </div>
     <!-- Basic -->
-    <difficulty-button label="Basic" variant="difficulty-basic" (clicked)="handleDifficultySelection('basic')">
+    <difficulty-button label="Basic" variant="difficulty-basic" (clicked)="onDifficultyChange('basic')">
     </difficulty-button>
 
     <!-- Easy -->
-    <difficulty-button label="Easy" variant="difficulty-easy" (clicked)="handleDifficultySelection('easy')">
+    <difficulty-button label="Easy" variant="difficulty-easy" (clicked)="onDifficultyChange('easy')">
     </difficulty-button>
 
     <!-- Medium -->
-    <difficulty-button label="Medium" variant="difficulty-medium" (clicked)="handleDifficultySelection('medium')">
+    <difficulty-button label="Medium" variant="difficulty-medium" (clicked)="onDifficultyChange('medium')">
     </difficulty-button>
 
     <!-- Hard -->
-    <difficulty-button label="Hard" variant="difficulty-hard" (clicked)="handleDifficultySelection('hard')">
+    <difficulty-button label="Hard" variant="difficulty-hard" (clicked)="onDifficultyChange('hard')">
     </difficulty-button>
 
     <!-- Mix -->
-    <difficulty-button label="Mix" variant="difficulty-mix" (clicked)="handleDifficultySelection('mix')">
+    <difficulty-button label="Mix" variant="difficulty-mix" (clicked)="onDifficultyChange('mix')">
     </difficulty-button>
 </div>
 
 <!-- Math content section -->
-<!-- change to mathProblem -->
-<div class="container-md math-problem flex flex-row" *ngIf="true">
-    <h1 class="text-9xl">{{ mathProblem?.question }} = </h1>
+<div class="container-md math-problem flex flex-row" *ngIf="currentExercise">
+    <h1 class="text-9xl">{{ currentExercise?.question }} = </h1>
     <div>
-            <input-result (userCalculations)="handleUserResult($event)">
-        </input-result>
-        <button (click)="handleSubmit()" class="btn">submit</button>
+      <input-result (userAnswerChange)="onUserAnswerChange($event)"></input-result>
+      <button (click)="onSubmit()" class="btn">Submit</button>
     </div>
-
-</div>
+  </div>
