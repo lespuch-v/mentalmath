@@ -33,6 +33,10 @@
 <!-- change to mathProblem -->
 <div class="container-md math-problem flex flex-row" *ngIf="true">
     <h1 class="text-9xl">{{ mathProblem?.question }} = </h1>
-    <input-result [mathProblemValue]="mathProblem?.answer ?? ''">
+    <div>
+            <input-result (userCalculations)="handleUserResult($event)">
         </input-result>
+        <button (click)="handleSubmit()" class="btn">submit</button>
+    </div>
+
 </div>

@@ -8,14 +8,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './input-result.component.css'
 })
 export class InputResultComponent {
-  @Input() mathProblemValue: string | number = '';
-  @Output() userCalculations = new EventEmitter<string | number>();
+  mathProblemValue: any = '';
+  @Output() userCalculations = new EventEmitter<number>();
 
-  handleUserInput($event: Event): void {
-    const inputElement = $event.target as HTMLInputElement;
-    const value = inputElement.value;
-    console.log(value);
-    
+  handleUserInput($event:  any): void {
+    const inputElement = $event.target.value;
+    const value = inputElement;    
     this.userCalculations.emit(value);
   }
 
