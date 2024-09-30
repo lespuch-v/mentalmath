@@ -1,48 +1,33 @@
 <!-- Difficulty buttons  -->
-<div class="container-md space-x-3">
+<div class="container-md space-x-3 space-y-3">
     <!-- Basic -->
-    <difficulty-button
-        label="Subtraction"
-        variant="math-operation"
-        (clicked)="handleMathOperation('subtraction')">
-   </difficulty-button>
+    <difficulty-button label="Subtraction" variant="math-operation" (clicked)="handleMathOperation('subtraction')">
+    </difficulty-button>
 
-    <difficulty-button
-        label="Basic"
-        variant="difficulty-basic"
-        (clicked)="handleDifficultySelection('basic')">
+    <difficulty-button label="Basic" variant="difficulty-basic" (clicked)="handleDifficultySelection('basic')">
     </difficulty-button>
 
     <!-- Easy -->
-    <difficulty-button
-        label="Easy"
-        variant="difficulty-easy"
-        (clicked)="handleDifficultySelection('easy')">
+    <difficulty-button label="Easy" variant="difficulty-easy" (clicked)="handleDifficultySelection('easy')">
     </difficulty-button>
 
     <!-- Medium -->
-    <difficulty-button
-        label="Medium"
-        variant="difficulty-medium"
-        (clicked)="handleDifficultySelection('medium')">
+    <difficulty-button label="Medium" variant="difficulty-medium" (clicked)="handleDifficultySelection('medium')">
     </difficulty-button>
 
     <!-- Hard -->
-    <difficulty-button
-        label="Hard"
-        variant="difficulty-hard"
-        (clicked)="handleDifficultySelection('hard')">
+    <difficulty-button label="Hard" variant="difficulty-hard" (clicked)="handleDifficultySelection('hard')">
     </difficulty-button>
 
     <!-- Mix -->
-    <difficulty-button
-        label="Mix"
-        variant="difficulty-mix"
-        (clicked)="handleDifficultySelection('mix')">
+    <difficulty-button label="Mix" variant="difficulty-mix" (clicked)="handleDifficultySelection('mix')">
     </difficulty-button>
 </div>
 
 <!-- Math content section -->
-<div class="container-md">
-    <h1 class="text-9xl">{{mathProblem.question}}</h1>
+<!-- change to mathProblem -->
+<div class="container-md math-problem flex flex-row" *ngIf="true">
+    <h1 class="text-9xl">{{ mathProblem?.question }} = </h1>
+    <input-result [mathProblemValue]="mathProblem?.answer ?? ''">
+        </input-result>
 </div>
