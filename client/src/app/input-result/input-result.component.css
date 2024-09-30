@@ -2,35 +2,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%; /* Make sure it's taking all available space if needed */
 }
 
 .math-input {
-    width: 400px;
+    width: 300px;
     height: 120px;
-    font-size: 100px;
-    text-align: center;
-    display: flex;
-    /* Make it a flex container */
-    align-items: center;
-    /* Center items vertically */
-    justify-content: center;
-    /* Center items horizontally */
-    padding: 0;
-    /* Remove default padding */
-    border: 1px solid black;
+    display: flex; /* Make input a flex container */
+    align-items: center; /* Vertically align content */
+    justify-content: center; /* Horizontally align content */
+    font-size: 100px; /* Consistent font size */
+    text-align: left; /* Horizontal centering of the text */
+    padding: 0; /* Remove default padding to avoid misalignment */
+    margin: 0; /* Ensure no margins are shifting the content */
+    /* border: 1px solid black; */
     border-radius: 10px;
-    overflow: hidden;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-    background-color: #13171c;
-    box-sizing: border-box;
-    font-size: 8rem;
+    box-sizing: border-box; /* Include padding and border in size */
+    overflow: hidden; /* Hide overflow */
+    -webkit-appearance: none; /* Remove input spinner on Safari */
+    -moz-appearance: textfield; /* Remove input spinner on Firefox */
+    transition: all 150ms;
+}
+
+input[type="text"]{
+    padding-left: 10px;
+    padding-bottom: 7px;
 }
 
 .math-input::-webkit-scrollbar {
-    display: none;
+    display: none; /* Hide scrollbar if there's overflow */
 }
 
 .math-input::-webkit-inner-spin-button,
@@ -43,6 +43,6 @@
     outline: none;
     border: 2px solid black;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    transition: border 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: border 0.3s ease-in-out, transform 100ms ease-in-out;
     transform: scale(1.05);
 }
