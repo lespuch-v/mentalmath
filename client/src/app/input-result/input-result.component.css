@@ -2,35 +2,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Make sure it's taking all available space if needed */
+    height: 100%;
 }
 
 .math-input {
     width: 300px;
     height: 120px;
-    display: flex; /* Make input a flex container */
-    align-items: center; /* Vertically align content */
-    justify-content: center; /* Horizontally align content */
-    font-size: 100px; /* Consistent font size */
-    text-align: left; /* Horizontal centering of the text */
-    padding: 0; /* Remove default padding to avoid misalignment */
-    margin: 0; /* Ensure no margins are shifting the content */
-    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    text-align: left;
+    padding: 0;
+    margin: 0;
     border-radius: 10px;
-    box-sizing: border-box; /* Include padding and border in size */
-    overflow: hidden; /* Hide overflow */
-    -webkit-appearance: none; /* Remove input spinner on Safari */
-    -moz-appearance: textfield; /* Remove input spinner on Firefox */
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
     transition: all 150ms;
 }
 
-input[type="text"]{
-    padding-left: 10px;
-    padding-bottom: 7px;
-}
-
 .math-input::-webkit-scrollbar {
-    display: none; /* Hide scrollbar if there's overflow */
+    display: none;
 }
 
 .math-input::-webkit-inner-spin-button,
@@ -44,5 +39,6 @@ input[type="text"]{
     border: 2px solid black;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     transition: border 0.3s ease-in-out, transform 100ms ease-in-out;
+    background-color: #313841;
     transform: scale(1.05);
 }

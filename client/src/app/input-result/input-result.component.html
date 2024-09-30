@@ -1,3 +1,9 @@
 <div class="math-input-container">
-    <input class="math-input" type="text" placeholder="0" [value]="mathProblemValue">
+    <input 
+        class="math-input"
+        [autofocus]="true"
+        type="text"
+        placeholder="0"
+        (input)="handleUserInput($event)"
+        [value]="mathProblemValue">
 </div>
