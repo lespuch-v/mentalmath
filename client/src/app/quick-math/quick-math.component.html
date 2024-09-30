@@ -1,9 +1,14 @@
 <!-- Difficulty buttons  -->
 <div class="container-md space-x-3 space-y-3">
-    <!-- Basic -->
-    <difficulty-button label="Subtraction" variant="math-operation" (clicked)="handleMathOperation('subtraction')">
-    </difficulty-button>
 
+    <div class="space-x-3 mb-3">
+        <math-op-button *ngFor="let mathOps of arithmeticOperations"
+            [label]="mathOps" 
+            [mathOperation]="mathOps" 
+            (clicked)="handleMathOperation(mathOps)" >
+        </math-op-button>
+    </div>
+    <!-- Basic -->
     <difficulty-button label="Basic" variant="difficulty-basic" (clicked)="handleDifficultySelection('basic')">
     </difficulty-button>
 

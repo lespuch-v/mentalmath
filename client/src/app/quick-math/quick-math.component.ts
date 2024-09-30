@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CalculationsService } from '../calculations.service';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from "../difficulty-button/difficulty-button.component";
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { InputResultComponent } from "../input-result/input-result.component";
+import { MathOpButtonComponent } from "../math-op-button/math-op-button.component";
 
 @Component({
   selector: 'app-quick-math',
   standalone: true,
-  imports: [DifficultyButtonComponent, NgIf, InputResultComponent],
+  imports: [DifficultyButtonComponent, NgIf, InputResultComponent, MathOpButtonComponent, NgFor],
   templateUrl: './quick-math.component.html',
   styleUrl: './quick-math.component.css'
 })
@@ -16,6 +17,10 @@ export class QuickMathComponent implements OnInit {
   selectedDifficulty: string = 'basic'
   arithmeticOperation: string = 'addition';
   mathProblem: Exercise | null = null;
+
+  arithmeticOperations: string [] = [
+    'addition', 'subtraction', 'multiplication', 'division'
+  ]
 
   constructor(private calculations: CalculationsService) { }
 
