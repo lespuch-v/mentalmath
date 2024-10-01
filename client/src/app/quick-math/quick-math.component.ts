@@ -36,6 +36,11 @@ export class QuickMathComponent implements OnInit {
     'division',
   ];
 
+  // 🔥🔥🔥 Continue here - Refactoring buttons
+  difficulties: string[] = [
+    'basic', 'easy', 'medium', 'hard', 'mix'
+  ]
+
   // Inject the calculations service to generate exercises
   constructor(private calculationsService: CalculationsService) {}
 
@@ -88,4 +93,9 @@ export class QuickMathComponent implements OnInit {
       this.onSubmit();
     }
   }
+
+  trackByDifficulty(index: number, item: string): string {
+    return item;
+  }
+  
 }
