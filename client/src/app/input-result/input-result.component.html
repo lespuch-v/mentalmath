@@ -1,8 +1,13 @@
 <div class="math-input-container">
     <input 
-        class="math-input"
-        autofocus
-        type="text"
-        placeholder=""
-        (input)="onInputChange($event)">
-</div>
+      #textInput
+      class="math-input"
+      autofocus
+      type="text"
+      placeholder=""
+      (input)="onInputChange($event)"
+    >
+    <!-- Hidden mirror element -->
+    <span #mirrorSpan class="mirror-span">{{ inputValue || placeholder }}</span>
+  </div>
+  

@@ -1,29 +1,20 @@
 .math-input-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
+    position: relative;
+    display: inline-block;
+  }
 
 .math-input {
-    width: 300px;
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-size: 8rem;
-    text-align: left;
     padding: 0;
     margin: 0;
+    border: none;
+    outline: none;
+    background-color: #2d353f;
     border-radius: 10px;
-    box-sizing: border-box;
-    overflow: hidden;
-    background-color: transparent;
-    -webkit-appearance: none;
-    -moz-appearance: textfield;
-    transition: all 150ms;
-    background-color: #2a2f2f!important;
-}
+    box-sizing: content-box;
+    /* padding-left: 15px; */
+    min-width: 100px;
+  }
 
 .math-input::-webkit-scrollbar {
     display: none;
@@ -43,3 +34,16 @@
     background-color: #313841;
     transform: scale(1.05);
 }
+
+.mirror-span {
+    position: absolute;
+    visibility: hidden;
+    white-space: pre;
+    font-size: 8rem;
+    font-family: inherit;
+    line-height: normal;
+    padding: 0;
+    margin: 0;
+    border: none;
+    box-sizing: content-box;
+  }

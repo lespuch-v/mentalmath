@@ -23,7 +23,6 @@ export class DifficultyButtonComponent implements OnChanges {
   }
 
   private updateButtonClasses(): void {
-    console.log(this.variant);
     
     switch (this.variant) {
       case 'basic':
