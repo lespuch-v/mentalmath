@@ -47,3 +47,12 @@
     border: none;
     box-sizing: content-box;
   }
+
+  .correct-answer{
+    outline: 7px solid #a4f3a4!important;
+  }
+
+  .incorrect-answer{
+    outline: 7px solid #f3a4a4!important;
+
+  }

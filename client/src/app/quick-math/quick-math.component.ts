@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { booleanAttribute, Component, OnInit } from '@angular/core';
 import { CalculationsService } from '../calculations.service';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
@@ -27,6 +27,7 @@ export class QuickMathComponent implements OnInit {
   selectedOperation: string = 'addition';
   userAnswer: number | null = null; // Holds the user's answer input
   currentExercise: Exercise | null = null; // Holds the current math problem
+  isAnswerCorrect!: boolean;
 
   // List of all available arithmetic operations
   mathOperations: string[] = [
@@ -42,7 +43,7 @@ export class QuickMathComponent implements OnInit {
   ]
 
   // Inject the calculations service to generate exercises
-  constructor(private calculationsService: CalculationsService) {}
+  constructor(private calculationsService: CalculationsService,) {}
 
   // Lifecycle hook that runs when the component is initialized
   ngOnInit(): void {
@@ -80,10 +81,11 @@ export class QuickMathComponent implements OnInit {
   // Method to handle submission of the user's answer
   onSubmit(): void {
     if (this.currentExercise !== null && this.userAnswer !== null) {
-      if (this.userAnswer === this.currentExercise.answer) {
-        console.log('Correct!'); // Print "Correct!" if the user's answer is correct
+      this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
+      if (this.isAnswerCorrect) {
+        console.log('Correct!');
       } else {
-        console.log('Incorrect. Try again.'); // Print a message if the user's answer is incorrect
+        console.log('Incorrect. Try again.');
       }
     }
   }
@@ -91,11 +93,23 @@ export class QuickMathComponent implements OnInit {
   onKeyEnter(event: KeyboardEvent): void{
     if (event.key == 'Enter'){
       this.onSubmit();
+      this.isAnswerCorrect = this.handleCorrectAnswer();
     }
   }
 
   trackByDifficulty(index: number, item: string): string {
     return item;
   }
-  
+
+  handleCorrectAnswer(): boolean {
+    const exercise = this.currentExercise
+
+    if (exercise) {
+      if(this.userAnswer === exercise.answer){
+        this.userAnswer === exercise.answer;
+        return true;
+      }
+    }
+    return false;
+  }
 }

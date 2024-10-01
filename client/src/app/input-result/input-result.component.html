@@ -2,12 +2,15 @@
     <input 
       #textInput
       class="math-input"
+      [ngClass]="{
+        'correct-answer' : correct === true, 'incorrect-answer' : correct === false
+        }"
       autofocus
       type="text"
       placeholder=""
       (input)="onInputChange($event)"
+      (keydown)="onKeyDown($event)"
     >
     <!-- Hidden mirror element -->
     <span #mirrorSpan class="mirror-span">{{ inputValue || placeholder }}</span>
   </div>
-  

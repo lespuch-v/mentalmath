@@ -1,19 +1,22 @@
+import { JsonPipe, NgClass } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'input-result',
   standalone: true,
-  imports: [],
+  imports: [NgClass, JsonPipe],
   templateUrl: './input-result.component.html',
-  styleUrl: './input-result.component.css'
+  styleUrl: './input-result.component.css',
 })
 export class InputResultComponent implements AfterViewInit {
   @Output() userAnswerChange = new EventEmitter<number>();
+  @Output() enterPressed = new EventEmitter<void>();
   @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
   @ViewChild('mirrorSpan') mirrorSpan!: ElementRef<HTMLSpanElement>;
 
   inputValue: string = '';
   placeholder: string = ' ';
+  @Input() correct!: boolean;
 
   ngAfterViewInit(): void {
     // Initialize the input width
@@ -27,6 +30,12 @@ export class InputResultComponent implements AfterViewInit {
       this.userAnswerChange.emit(parsedValue);
     }
     this.adjustInputWidth();
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.enterPressed.emit();
+    }
   }
 
   private adjustInputWidth(): void {
