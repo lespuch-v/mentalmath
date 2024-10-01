@@ -3,9 +3,10 @@
 
     <div class="space-x-3 mb-3">
         <math-op-button *ngFor="let operation of mathOperations"
-            [label]="operation" 
-            [mathOperation]="operation" 
-            (clicked)="onOperationChange(operation)" >
+            [selectedOperation]="selectedOperation"
+            [operationName]="operation"
+            [operationType]="operation"
+            (operationSelected)="onOperationChange(operation)" >
         </math-op-button>
     </div>
     <!-- Basic -->

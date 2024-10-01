@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CalculationsService } from '../calculations.service';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
-import { NgFor, NgIf } from '@angular/common';
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { MathOpButtonComponent } from '../math-op-button/math-op-button.component';
 
@@ -15,6 +15,7 @@ import { MathOpButtonComponent } from '../math-op-button/math-op-button.componen
     InputResultComponent,
     MathOpButtonComponent,
     NgFor,
+    JsonPipe,
   ],
   templateUrl: './quick-math.component.html',
   styleUrls: ['./quick-math.component.css'],

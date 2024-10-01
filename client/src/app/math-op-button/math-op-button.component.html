@@ -1,1 +1,6 @@
-<button class="btn btn-outline btn-sm" (click)="onClick()">{{ label | firstLetterUpperCase }}</button>
+<button
+  class="btn btn-outline btn-sm"
+  [ngClass]="{'selected-style': operationType === selectedOperation}"
+  (click)="onClick()">
+  {{ operationName | firstLetterUpperCase }}
+</button>
