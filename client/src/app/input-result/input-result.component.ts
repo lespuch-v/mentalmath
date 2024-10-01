@@ -16,7 +16,7 @@ export class InputResultComponent implements AfterViewInit {
 
   inputValue: string = '';
   placeholder: string = ' ';
-  @Input() correct!: boolean;
+  @Input() correct!: boolean | null;
 
   ngAfterViewInit(): void {
     // Initialize the input width
@@ -35,13 +35,16 @@ export class InputResultComponent implements AfterViewInit {
   onKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Enter') {
       this.enterPressed.emit();
+      setTimeout(() => {
+        this.textInput.nativeElement.value = '';
+        this.textInput.nativeElement.classList.remove('correct-answer')
+        this.textInput.nativeElement.classList.remove('correct-answer')
+      },500)
     }
   }
 
   private adjustInputWidth(): void {
-    // Get the width of the mirror span
     const spanWidth = this.mirrorSpan.nativeElement.offsetWidth;
-    // Set the input width to match the span width
-    this.textInput.nativeElement.style.width = `${spanWidth + 55}px`; // Add some padding
+    this.textInput.nativeElement.style.width = `${spanWidth + 55}px`;
   }
 }

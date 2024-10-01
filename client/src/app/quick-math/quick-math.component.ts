@@ -1,11 +1,10 @@
-import { booleanAttribute, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalculationsService } from '../calculations.service';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { MathOpButtonComponent } from '../math-op-button/math-op-button.component';
-import { every } from 'rxjs';
 
 @Component({
   selector: 'app-quick-math',
@@ -27,7 +26,7 @@ export class QuickMathComponent implements OnInit {
   selectedOperation: string = 'addition';
   userAnswer: number | null = null; // Holds the user's answer input
   currentExercise: Exercise | null = null; // Holds the current math problem
-  isAnswerCorrect!: boolean;
+  isAnswerCorrect: boolean | null = null;
 
   // List of all available arithmetic operations
   mathOperations: string[] = [
@@ -82,11 +81,21 @@ export class QuickMathComponent implements OnInit {
   onSubmit(): void {
     if (this.currentExercise !== null && this.userAnswer !== null) {
       this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
+
       if (this.isAnswerCorrect) {
         console.log('Correct!');
+        this.loadExercise();
       } else {
         console.log('Incorrect. Try again.');
       }
+
+      // Reset isAnswerCorrect after 500ms
+      setTimeout(() => {
+        this.isAnswerCorrect = null;
+        this.userAnswer = null; // Reset user's answer
+        // Trigger change detection if necessary
+        // this.cdRef.detectChanges();
+      }, 500);
     }
   }
 
