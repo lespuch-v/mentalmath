@@ -34,7 +34,7 @@
 <div class="container-md math-problem flex flex-row" *ngIf="currentExercise">
     <h1 class="text-9xl">{{ currentExercise?.question }} = </h1>
     <div>
-      <input-result (userAnswerChange)="onUserAnswerChange($event)"></input-result>
+      <input-result (userAnswerChange)="onUserAnswerChange($event)" (keypress)="onKeyEnter($event)"></input-result>
       <button (click)="onSubmit()" class="btn">Submit</button>
     </div>
   </div>

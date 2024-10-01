@@ -5,6 +5,7 @@ import { DifficultyButtonComponent } from '../difficulty-button/difficulty-butto
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { MathOpButtonComponent } from '../math-op-button/math-op-button.component';
+import { every } from 'rxjs';
 
 @Component({
   selector: 'app-quick-math',
@@ -79,6 +80,12 @@ export class QuickMathComponent implements OnInit {
       } else {
         console.log('Incorrect. Try again.'); // Print a message if the user's answer is incorrect
       }
+    }
+  }
+
+  onKeyEnter(event: KeyboardEvent): void{
+    if (event.key == 'Enter'){
+      this.onSubmit();
     }
   }
 }
