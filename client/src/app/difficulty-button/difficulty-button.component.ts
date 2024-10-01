@@ -27,7 +27,7 @@ export class DifficultyButtonComponent {
       case 'difficulty-hard':
         return 'btn difficulty-hard bg-red-500 dark:bg-red-700 text-white hover:bg-red-600 dark:hover:bg-red-600';
       case 'difficulty-mix':
-        return 'btn difficulty-mix bg-orange-500 text-white rounded-lg transition-all duration-300 px-4 py-2';
+        return 'btn difficulty-mix bg-gray-800 text-white rounded-lg transition-all duration-300 px-4 py-2';
       default:
         return 'btn';
     }
