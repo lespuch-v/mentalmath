@@ -1,5 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { QuickStatService } from '../quick-stat.service';
+import { Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -9,25 +8,19 @@ import { NgIf } from '@angular/common';
   templateUrl: './quick-stat-current-strike.component.html',
   styleUrl: './quick-stat-current-strike.component.css',
 })
-export class QuickStatCurrentStrikeComponent implements OnInit, OnChanges {
-  currentStrike!: number;
+export class QuickStatCurrentStrikeComponent implements OnChanges {
+  @Input() currentStrike!: number;
   isPlusOneActive: boolean = false;
 
-  constructor(private calculateStat: QuickStatService){}
-
-  ngOnInit(): void {
-    this.currentStrike = this.calculateStat.getCurrentStrike();
-
-  }
+  constructor(){}
 
   ngOnChanges(changes: SimpleChanges): void {
-    
     if(changes['currentStrike']){
       this.isPlusOneActive = true;
 
       setTimeout(() => {
         this.isPlusOneActive = false;
-      }, 250);
+      }, 150)
     }
   }
 }
