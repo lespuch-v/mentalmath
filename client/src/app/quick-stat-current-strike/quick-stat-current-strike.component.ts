@@ -10,7 +10,7 @@ import { NgIf } from '@angular/common';
   styleUrl: './quick-stat-current-strike.component.css',
 })
 export class QuickStatCurrentStrikeComponent implements OnInit, OnChanges {
-  @Input() currentStrike!: number;
+  currentStrike!: number;
   isPlusOneActive: boolean = false;
 
   constructor(private calculateStat: QuickStatService){}
