@@ -1,16 +1,22 @@
 <div class="math-input-container">
-    <input 
-      #textInput
-      class="math-input"
-      [ngClass]="{
-        'correct-answer' : correct === true, 'incorrect-answer' : correct === false
-        }"
-      autofocus
-      type="text"
-      placeholder=""
-      (input)="onInputChange($event)"
-      (keydown)="onKeyDown($event)"
-    >
-    <!-- Hidden mirror element -->
-    <span #mirrorSpan class="mirror-span">{{ inputValue || placeholder }}</span>
-  </div>
+  <input 
+    #textInput
+    class="math-input text-8xl min-w-[100px] p-0 m-0 rounded-lg 
+           bg-base-200 dark:bg-base-300
+           focus:outline-none focus:border-2 focus:border-base-content
+           focus:shadow-md focus:scale-105 transition-all duration-300
+           scrollbar-hide"
+    [ngClass]="{
+      'correct-answer': correct === true,
+      'incorrect-answer': correct === false
+    }"
+    autofocus
+    type="text"
+    placeholder=""
+    (input)="onInputChange($event)"
+    (keydown)="onKeyDown($event)"
+  >
+  <span #mirrorSpan class="mirror-span text-8xl invisible absolute whitespace-pre">
+    {{ inputValue || placeholder }}
+  </span>
+</div>

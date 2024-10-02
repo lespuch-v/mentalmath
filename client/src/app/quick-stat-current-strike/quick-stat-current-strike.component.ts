@@ -30,6 +30,4 @@ export class QuickStatCurrentStrikeComponent implements OnInit, OnChanges {
       }, 250);
     }
   }
-
-
 }

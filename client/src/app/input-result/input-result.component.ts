@@ -13,13 +13,11 @@ export class InputResultComponent implements AfterViewInit {
   @Output() enterPressed = new EventEmitter<void>();
   @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
   @ViewChild('mirrorSpan') mirrorSpan!: ElementRef<HTMLSpanElement>;
-
   inputValue: string = '';
   placeholder: string = ' ';
   @Input() correct!: boolean | null;
 
   ngAfterViewInit(): void {
-    // Initialize the input width
     this.adjustInputWidth();
   }
 
@@ -38,8 +36,8 @@ export class InputResultComponent implements AfterViewInit {
       setTimeout(() => {
         this.textInput.nativeElement.value = '';
         this.textInput.nativeElement.classList.remove('correct-answer')
-        this.textInput.nativeElement.classList.remove('correct-answer')
-      },500)
+        this.textInput.nativeElement.classList.remove('incorrect-answer')
+      }, 500)
     }
   }
 
