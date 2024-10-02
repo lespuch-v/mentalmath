@@ -9,7 +9,6 @@
     margin: 0;
     border: none;
     outline: none;
-    background-color: #2d353f;
     border-radius: 10px;
     box-sizing: content-box;
     /* padding-left: 15px; */
@@ -30,8 +29,7 @@
     outline: none;
     border: 2px solid black;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    transition: border 0.3s ease-in-out, transform 100ms ease-in-out;
-    background-color: #313841;
+    transition: border 50ms ease-in-out, transform 100ms ease-in-out;
     transform: scale(1.05);
 }
 
@@ -48,11 +46,29 @@
     box-sizing: content-box;
   }
 
-  .correct-answer{
-    outline: 7px solid #a4f3a4!important;
-  }
+/* input-result.component.css */
+.math-input.correct-answer {
+  @apply border-4 border-success;
+  box-shadow: 0 0 0 4px theme('colors.success' / 30%);
+}
 
-  .incorrect-answer{
-    outline: 7px solid #f3a4a4!important;
+.math-input.incorrect-answer {
+  @apply border-4 border-error;
+  box-shadow: 0 0 0 4px theme('colors.error' / 30%);
+}
 
-  }
+/* Keep your existing styles */
+.math-input::-webkit-inner-spin-button,
+.math-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
