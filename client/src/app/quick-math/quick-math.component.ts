@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CalculationsService } from '../calculations.service';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { MathOpButtonComponent } from '../math-op-button/math-op-button.component';
+import { QuickStatAccuracyRateComponent } from "../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component";
+import { QuickStatCurrentStrikeComponent } from "../quick-stat-current-strike/quick-stat-current-strike.component";
+import { QuickStatHighestStrikeComponent } from "../quick-stat-highest-strike/quick-stat-highest-strike.component";
 
 @Component({
   selector: 'app-quick-math',
@@ -16,7 +19,10 @@ import { MathOpButtonComponent } from '../math-op-button/math-op-button.componen
     MathOpButtonComponent,
     NgFor,
     JsonPipe,
-  ],
+    QuickStatAccuracyRateComponent,
+    QuickStatCurrentStrikeComponent,
+    QuickStatHighestStrikeComponent
+],
   templateUrl: './quick-math.component.html',
   styleUrls: ['./quick-math.component.css'],
 })
@@ -27,6 +33,7 @@ export class QuickMathComponent implements OnInit {
   userAnswer: number | null = null; // Holds the user's answer input
   currentExercise: Exercise | null = null; // Holds the current math problem
   isAnswerCorrect: boolean | null = null;
+  correctAnswerCount: number = 0;
 
   // List of all available arithmetic operations
   mathOperations: string[] = [
@@ -36,7 +43,6 @@ export class QuickMathComponent implements OnInit {
     'division',
   ];
 
-  // 🔥🔥🔥 Continue here - Refactoring buttons
   difficulties: string[] = [
     'basic', 'easy', 'medium', 'hard', 'mix'
   ]
@@ -84,9 +90,11 @@ export class QuickMathComponent implements OnInit {
 
       if (this.isAnswerCorrect) {
         console.log('Correct!');
+        this.correctAnswerCount++
         this.loadExercise();
       } else {
         console.log('Incorrect. Try again.');
+        this.correctAnswerCount = 0;
       }
 
       // Reset isAnswerCorrect after 500ms

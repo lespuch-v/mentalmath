@@ -1,0 +1,7 @@
+.custom-badge{
+    color: aqua;
+    position: absolute;
+    transform: translate(18px, 17px);
+    font-weight: bolder;
+}
+
