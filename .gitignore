@@ -26,3 +26,4 @@ server/.idea
 # Ignore server BS
 server/.vs
 server/obj
+server/bin/debug
