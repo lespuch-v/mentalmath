@@ -1,0 +1,35 @@
+<div *ngIf="isModalOpen" class="modal modal-open">
+    <div class="modal-box relative max-w-sm">
+      <button 
+        class="btn btn-sm btn-circle absolute right-2 top-2" 
+        (click)="closeModal()">
+        ✕
+      </button>
+      <h2 class="text-2xl font-bold text-center mb-4">Login</h2>
+  
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-control mb-4">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input type="email" class="input input-bordered w-full" [(ngModel)]="user.email" name="email" required />
+        </div>
+        
+        <div class="form-control mb-6">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input type="password" class="input input-bordered w-full" [(ngModel)]="user.password" name="password" required />
+        </div>
+  
+        <div class="form-control mb-4">
+          <button type="submit" class="btn btn-primary w-full">Login</button>
+        </div>
+        
+        <p class="text-center">
+          <a class="link" href="#" (click)="onForgotPassword()">Forgot Password?</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  
