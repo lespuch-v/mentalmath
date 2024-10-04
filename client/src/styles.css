@@ -2,3 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.quick-math-icon{
+    font-size: 37px;
+}
