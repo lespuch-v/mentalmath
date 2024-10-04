@@ -1,5 +1,4 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { CalculationsService } from '../calculations.service';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { JsonPipe, NgFor, NgIf } from '@angular/common';
@@ -8,6 +7,8 @@ import { MathOpButtonComponent } from '../math-op-button/math-op-button.componen
 import { QuickStatAccuracyRateComponent } from "../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component";
 import { QuickStatCurrentStrikeComponent } from "../quick-stat-current-strike/quick-stat-current-strike.component";
 import { QuickStatHighestStrikeComponent } from "../quick-stat-highest-strike/quick-stat-highest-strike.component";
+import { CalculationsService } from '../services/calculations.service';
+import { QuickStatService } from '../services/quick-stat.service';
 
 @Component({
   selector: 'app-quick-math',
@@ -48,7 +49,7 @@ export class QuickMathComponent implements OnInit {
   ]
 
   // Inject the calculations service to generate exercises
-  constructor(private calculationsService: CalculationsService,) {}
+  constructor(private calculationsService: CalculationsService, private quickStatService: QuickStatService) {}
 
   // Lifecycle hook that runs when the component is initialized
   ngOnInit(): void {
@@ -89,20 +90,21 @@ export class QuickMathComponent implements OnInit {
       this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
 
       if (this.isAnswerCorrect) {
-        console.log('Correct!');
-        this.correctAnswerCount++
+        this.correctAnswerCount++;
+        this.quickStatService.incrementStrike();
+        this.quickStatService.incrementTotalQuestions();
+        this.quickStatService.calculateAccuracy(this.correctAnswerCount);
         this.loadExercise();
       } else {
-        console.log('Incorrect. Try again.');
         this.correctAnswerCount = 0;
+        this.quickStatService.resetStrike();
+        this.quickStatService.incrementTotalQuestions();
+        this.quickStatService.calculateAccuracy(this.correctAnswerCount);
       }
 
-      // Reset isAnswerCorrect after 500ms
       setTimeout(() => {
         this.isAnswerCorrect = null;
-        this.userAnswer = null; // Reset user's answer
-        // Trigger change detection if necessary
-        // this.cdRef.detectChanges();
+        this.userAnswer = null;
       }, 500);
     }
   }

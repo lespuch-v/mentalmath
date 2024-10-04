@@ -1,29 +1,22 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { QuickStatService } from '../quick-stat.service';
+import { QuickStatService } from '../services/quick-stat.service';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-quick-stat-highest-strike',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './quick-stat-highest-strike.component.html',
   styleUrl: './quick-stat-highest-strike.component.css'
 })
-export class QuickStatHighestStrikeComponent implements OnInit, OnChanges{
-  highestStrike!: number;
+export class QuickStatHighestStrikeComponent implements OnInit{
+  highestStrike$!: Observable<number>;
   isPlusOneActive: boolean = false;
 
-  constructor(private calculateStat: QuickStatService){}
+  constructor(private quickStatService: QuickStatService){}
 
   ngOnInit(): void {
-    this.highestStrike = this.calculateStat.getHighestStrike();
+    this.highestStrike$ = this.quickStatService.highestStrike$;
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.highestStrike);
-    
-    if(changes['highestStrike']){
-      this.highestStrike = this.calculateStat.getHighestStrike();
-    }
-  }
-
 }
