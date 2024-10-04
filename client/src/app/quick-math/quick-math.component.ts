@@ -9,6 +9,7 @@ import { QuickStatCurrentStrikeComponent } from "../quick-stat-current-strike/qu
 import { QuickStatHighestStrikeComponent } from "../quick-stat-highest-strike/quick-stat-highest-strike.component";
 import { CalculationsService } from '../services/calculations.service';
 import { QuickStatService } from '../services/quick-stat.service';
+import { QuickStatTotalSolvedComponent } from "../quick-stat-total-solved/quick-stat-total-solved.component";
 
 @Component({
   selector: 'app-quick-math',
@@ -22,7 +23,8 @@ import { QuickStatService } from '../services/quick-stat.service';
     JsonPipe,
     QuickStatAccuracyRateComponent,
     QuickStatCurrentStrikeComponent,
-    QuickStatHighestStrikeComponent
+    QuickStatHighestStrikeComponent,
+    QuickStatTotalSolvedComponent
 ],
   templateUrl: './quick-math.component.html',
   styleUrls: ['./quick-math.component.css'],
@@ -88,16 +90,19 @@ export class QuickMathComponent implements OnInit {
   onSubmit(): void {
     if (this.currentExercise !== null && this.userAnswer !== null) {
       this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
+      console.log('User answer submitted:', this.userAnswer, 'Correct answer:', this.currentExercise.answer, 'Is correct:', this.isAnswerCorrect);
 
       if (this.isAnswerCorrect) {
         this.correctAnswerCount++;
         this.quickStatService.incrementStrike();
+        this.quickStatService.incrementSolvedChallenges();
         this.quickStatService.incrementTotalQuestions();
         this.quickStatService.calculateAccuracy(this.correctAnswerCount);
         this.loadExercise();
       } else {
         this.correctAnswerCount = 0;
         this.quickStatService.resetStrike();
+        //this.quickStatService.incrementSolvedChallenges();
         this.quickStatService.incrementTotalQuestions();
         this.quickStatService.calculateAccuracy(this.correctAnswerCount);
       }

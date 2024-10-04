@@ -9,6 +9,7 @@ export class QuickStatService {
   private correctAnswerCount = 0;
   private highestStrike = 0;
   private totalQuestions = 0;
+  private totalChallengesSolved = 0;
 
   private highestStrikeSubject = new BehaviorSubject<number>(0);
   highestStrike$ = this.highestStrikeSubject.asObservable();
@@ -16,7 +17,11 @@ export class QuickStatService {
   private accuracyRateSubject = new BehaviorSubject<number>(0);
   accuracyRate$ = this.accuracyRateSubject.asObservable();
 
+  private totalChallengesSolvedSubject = new BehaviorSubject<number>(0);
+  totalChallengesSolved$ = this.totalChallengesSolvedSubject.asObservable();
+
   incrementStrike() {
+    console.log('Incrementing strike');
     this.correctAnswerCount++;
     if (this.correctAnswerCount > this.highestStrike) {
       this.highestStrike = this.correctAnswerCount;
@@ -25,6 +30,7 @@ export class QuickStatService {
   }
 
   resetStrike() {
+    console.log('Resetting strike');
     this.correctAnswerCount = 0;
   }
 
@@ -32,8 +38,15 @@ export class QuickStatService {
     return this.correctAnswerCount;
   }
 
-  incrementTotalQuestions() {
+  incrementTotalQuestions(): void {
+    console.log('Incrementing total questions');
     this.totalQuestions++;
+  }
+
+  incrementSolvedChallenges() {
+    console.log('Incrementing solved challenges');
+    this.totalChallengesSolved++;
+    this.totalChallengesSolvedSubject.next(this.totalChallengesSolved);
   }
 
   calculateAccuracy(correctAnswers: number): void {
