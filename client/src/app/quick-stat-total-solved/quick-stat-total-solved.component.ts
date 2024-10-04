@@ -16,10 +16,8 @@ export class QuickStatTotalSolvedComponent {
   constructor(private quickStatService: QuickStatService){}
 
   ngOnInit(): void{
-    console.log('QuickStatTotalSolvedComponent initialized');
     this.totalChallengesSolved$ = this.quickStatService.totalChallengesSolved$;
     this.totalChallengesSolved$.subscribe(value => {
-      console.log('Total challenges solved updated:', value);
     });
   }
 }

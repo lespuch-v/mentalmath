@@ -24,7 +24,7 @@
 
 
   <!-- Math content section -->
-  <div class="container-md math-problem flex flex-row" *ngIf="currentExercise">
+  <div class="container-md math-problem flex flex-row justify-center" *ngIf="currentExercise">
     <h1 class="text-9xl">{{ currentExercise.question }} = </h1>
     <div>
       <input-result [correct]="isAnswerCorrect" (userAnswerChange)="onUserAnswerChange($event)"

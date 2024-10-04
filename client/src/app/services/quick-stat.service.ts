@@ -21,7 +21,6 @@ export class QuickStatService {
   totalChallengesSolved$ = this.totalChallengesSolvedSubject.asObservable();
 
   incrementStrike() {
-    console.log('Incrementing strike');
     this.correctAnswerCount++;
     if (this.correctAnswerCount > this.highestStrike) {
       this.highestStrike = this.correctAnswerCount;
@@ -30,7 +29,6 @@ export class QuickStatService {
   }
 
   resetStrike() {
-    console.log('Resetting strike');
     this.correctAnswerCount = 0;
   }
 
@@ -39,12 +37,10 @@ export class QuickStatService {
   }
 
   incrementTotalQuestions(): void {
-    console.log('Incrementing total questions');
     this.totalQuestions++;
   }
 
   incrementSolvedChallenges() {
-    console.log('Incrementing solved challenges');
     this.totalChallengesSolved++;
     this.totalChallengesSolvedSubject.next(this.totalChallengesSolved);
   }

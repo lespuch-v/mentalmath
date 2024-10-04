@@ -17,7 +17,6 @@ export class MathOpButtonComponent {
   @Output() operationSelected = new EventEmitter<string>()
 
   onClick(): void {
-    console.log(this.operationType);
     this.operationSelected.emit(this.operationType)
   }
 

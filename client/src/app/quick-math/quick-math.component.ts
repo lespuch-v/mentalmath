@@ -90,7 +90,6 @@ export class QuickMathComponent implements OnInit {
   onSubmit(): void {
     if (this.currentExercise !== null && this.userAnswer !== null) {
       this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
-      console.log('User answer submitted:', this.userAnswer, 'Correct answer:', this.currentExercise.answer, 'Is correct:', this.isAnswerCorrect);
 
       if (this.isAnswerCorrect) {
         this.correctAnswerCount++;
