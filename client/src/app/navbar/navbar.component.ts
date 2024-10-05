@@ -1,13 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { DarkModeToggleComponent } from '../dark-mode-toggler/dark-mode-toggle.component';
 import { LoginModalComponent } from "../login-modal/login-modal.component";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
     DarkModeToggleComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    RouterModule
 ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'

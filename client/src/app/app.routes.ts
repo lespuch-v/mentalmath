@@ -6,6 +6,8 @@ import { RapidComponent } from './rapid/rapid.component';
 import { AdditionComponent } from './addition/addition.component';
 import { SubtractionComponent } from './subtraction/subtraction.component';
 import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
+import { MultiplicationComponent } from './multiplication/multiplication.component';
+import { DivisionComponent } from './division/division.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ export const routes: Routes = [
     { path: 'rapid', component: RapidComponent},
     { path: 'addition', component: AdditionComponent},
     { path: 'subtraction', component: SubtractionComponent},
+    { path: 'multiplication', component: MultiplicationComponent},
     { path: 'multiplication-table', component: MultiplicationTableComponent},
+    { path: 'division', component: DivisionComponent},
     { path: '**', component: HomeComponent}
 ];

@@ -7,37 +7,54 @@
         </svg>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a>Trachtenberg</a></li>
-        <li><a>Start</a></li>
+        <!-- Mobile (small screen) -->
+        <li>
+          <a routerLink="/" routerLinkActive="bg-gray-500 text-white" 
+             [routerLinkActiveOptions]="{ exact: true }">
+            Trachtenberg
+          </a>
+        </li>        
+        <li><a routerLink="/rapid" routerLinkActive="bg-gray-500 text-white">Rapid</a></li>
         <li>
           <a>Calculations</a>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+          <ul class="p-2 space-y-2">
+            <li><a routerLink="/addition" routerLinkActive="bg-gray-500 text-white">Addition</a></li>
+            <li><a routerLink="/subtraction" routerLinkActive="bg-gray-500 text-white">Subtraction</a></li>
+            <li><a routerLink="/multiplication" routerLinkActive="bg-gray-500 text-white">Multiplication</a></li>
+            <li><a routerLink="/multiplication-table" routerLinkActive="bg-gray-500 text-white">Multiplication table</a></li>
+            <li><a routerLink="/division" routerLinkActive="bg-gray-500 text-white">Division</a></li>
           </ul>
         </li>
-        <li><a>Stats</a></li>
+        <li><a routerLink="/stats" routerLinkActive="bg-gray-500 text-white">Stats</a></li>
       </ul>
     </div>
-    <a class="btn btn-ghost text-xl">🧮Trachtenberg system</a>
+    <a routerLink="/" class="btn btn-ghost text-xl">🧮Trachtenberg system</a>
   </div>
   <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Trachtenberg</a></li>
-      <li><a>Rapid</a></li>
+    <ul class="menu menu-horizontal px-1 space-x-3">
+      <!-- Big screen -->
+       <!-- Something wrong here -->
+       <li>
+        <a routerLink="/" routerLinkActive="bg-gray-500 text-white" 
+           [routerLinkActiveOptions]="{ exact: true }">
+          Trachtenberg
+        </a>
+      </li>
+      
+      <li><a routerLink="/rapid" routerLinkActive="bg-gray-500 text-white">Rapid</a></li>
       <li>
         <details>
           <summary>Calculations</summary>
-          <ul class="p-2">
-            <li><a>Addition</a></li>
-            <li><a>Subtraction</a></li>
-            <li><a>Multiplication</a></li>
-            <li><a>Multiplication table</a></li>
-            <li><a>Division</a></li>
+          <ul class="p-2 space-y-2">
+            <li><a routerLink="/addition" routerLinkActive="bg-gray-500 text-white">Addition</a></li>
+            <li><a routerLink="/subtraction" routerLinkActive="bg-gray-500 text-white">Subtraction</a></li>
+            <li><a routerLink="/multiplication" routerLinkActive="bg-gray-500 text-white">Multiplication</a></li>
+            <li><a routerLink="/multiplication-table" routerLinkActive="bg-gray-500 text-white">Multiplication table</a></li>
+            <li><a routerLink="/division" routerLinkActive="bg-gray-500 text-white">Division</a></li>
           </ul>
         </details>
       </li>
-      <li><a>Stats</a></li>
+      <li><a routerLink="/stats" routerLinkActive="bg-gray-500 text-white">Stats</a></li>
     </ul>
   </div>
   <div class="navbar-end space-x-3">
