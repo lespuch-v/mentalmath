@@ -1,0 +1,57 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.div1 { grid-area: 2 / 2 / 3 / 3; }
+.div2 { grid-area: 2 / 3 / 3 / 4; }
+.div3 { grid-area: 2 / 4 / 3 / 5; }
+.div4 { grid-area: 3 / 2 / 4 / 5; }
+.div5 { grid-area: 4 / 2 / 5 / 3; }
+.div6 { grid-area: 4 / 3 / 5 / 4; }
+.div7 { grid-area: 4 / 4 / 5 / 5; }
+
+.div1{
+  background-color: cyan;
+  width: 250px;
+  height: 250px;
+}
+
+.div2{
+  background-color: yellow;
+  width: 250px;
+  height: 250px;
+}
+
+.div3{
+  background-color: orangered;
+  width: 250px;
+  height: 250px;
+}
+
+.div4{
+  background-color: blueviolet;
+  width: 770px;
+  height: 250px;
+}
+
+.div5{
+  background-color: blue;
+  width: 250px;
+  height: 250px;
+}
+
+.div6{
+  background-color: hotpink;
+  width: 250px;
+  height: 250px;
+}
+
+.div7{
+  background-color: lightsalmon;
+  width: 250px;
+  height: 250px;
+}

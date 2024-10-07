@@ -27,12 +27,21 @@ import { Exercise } from '../models';
   styleUrl: './addition.component.css'
 })
 export class AdditionComponent {
-  currentExercise: Exercise | null = null;
-  difficulties: string[] = [
-    'basic', 'easy', 'medium', 'hard', 'mix'
+  currentExercise: Exercise | null = {
+    question: '1+1', difficulty: 'hard', type:'addition', answer:1
+  };
+
+  difficulties: { difficulty: string; tooltip: string }[] = [
+    { difficulty: 'easy', tooltip: '0-10' },
+    { difficulty: 'intermediate', tooltip: '10-99'},
+    { difficulty: 'medium', tooltip: '100-999'},
+    { difficulty: 'challenging', tooltip: '1000-9999'},
+    { difficulty: 'hard', tooltip: '10000-99999'},
+    { difficulty: 'expert', tooltip: '100000-999999'},
+    { difficulty: 'mix', tooltip: '?'}
   ]
 
-  onUserAnswerChange($event: number) {
+    onUserAnswerChange($event: number) {
 
   }
 

@@ -1,5 +1,14 @@
-<button
-  [ngClass]="buttonClasses + ' ' + (value === selectedValue ? 'selected-style' : '')"
-  (click)="onClick()">
-  {{ label | firstLetterUpperCase }}
-</button>
+<div class="tooltip-wrapper" (mouseenter)="toggleTooltip(true)" (mouseleave)="toggleTooltip(false)">
+  <button
+    [type]="type"
+    [ngClass]="buttonClasses + ' ' + (value === selectedValue ? 'selected-style' : '')"
+    (click)="onClick()">
+    {{ label | firstLetterUpperCase }}
+  </button>
+
+  <div *ngIf="tooltipContent && showTooltip"
+       role="tooltip"
+       class="tooltip-content absolute z-10 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm dark:bg-gray-700">
+    {{ tooltipContent }}
+  </div>
+</div>

@@ -9,11 +9,11 @@
       <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
         <!-- Mobile (small screen) -->
         <li>
-          <a routerLink="/" routerLinkActive="bg-gray-500 text-white" 
+          <a routerLink="/" routerLinkActive="bg-gray-500 text-white"
              [routerLinkActiveOptions]="{ exact: true }">
             Trachtenberg
           </a>
-        </li>        
+        </li>
         <li><a routerLink="/rapid" routerLinkActive="bg-gray-500 text-white">Rapid</a></li>
         <li>
           <a>Calculations</a>
@@ -35,12 +35,12 @@
       <!-- Big screen -->
        <!-- Something wrong here -->
        <li>
-        <a routerLink="/" routerLinkActive="bg-gray-500 text-white" 
+        <a routerLink="/" routerLinkActive="bg-gray-500 text-white"
            [routerLinkActiveOptions]="{ exact: true }">
           Trachtenberg
         </a>
       </li>
-      
+
       <li><a routerLink="/rapid" routerLinkActive="bg-gray-500 text-white">Rapid</a></li>
       <li>
         <details>
@@ -57,7 +57,7 @@
       <li><a routerLink="/stats" routerLinkActive="bg-gray-500 text-white">Stats</a></li>
     </ul>
   </div>
-  <div class="navbar-end space-x-3">
+  <div class="navbar-end space-x-3 z-50">
     <dark-mode-toggle></dark-mode-toggle>
     <button (click)="openLoginModal()" class="btn btn-primary btn-sm">Login</button>
     <button (click)="openRegisterModal()" class="btn btn-secondary border-none btn-sm bg-gray-700 hover:bg-gray-900 text-white">Sign Up</button>
