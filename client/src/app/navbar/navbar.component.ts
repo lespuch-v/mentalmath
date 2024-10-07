@@ -3,6 +3,8 @@ import { DarkModeToggleComponent } from '../dark-mode-toggler/dark-mode-toggle.c
 import { LoginModalComponent } from "../login-modal/login-modal.component";
 import { RouterModule } from '@angular/router';
 import { RegisterModalComponent } from "../register-modal/register-modal.component";
+import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -20,6 +22,12 @@ export class NavbarComponent {
   @ViewChild('loginModal') loginModal!: LoginModalComponent;
   @ViewChild('registerModal') registerModal!: RegisterModalComponent;
 
+  isLoggedIn$!: Observable<boolean>;
+
+  constructor(private authService: AuthService) {
+    this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
+
   openLoginModal(): void {
     this.loginModal.openModal();
   }
@@ -28,4 +36,8 @@ export class NavbarComponent {
     this.registerModal.openRegisterModal();
   }
 
+  logout(): void {
+    this.authService.logout();
+    console.log('User logged out');
+  }
 }

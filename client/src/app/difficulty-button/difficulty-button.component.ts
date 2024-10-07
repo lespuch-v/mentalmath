@@ -23,22 +23,22 @@ export class DifficultyButtonComponent implements OnChanges {
   }
 
   private updateButtonClasses(): void {
-    
+
     switch (this.variant) {
       case 'basic':
-        this.buttonClasses = 'btn difficulty-easy bg-green-200 dark:bg-green-600 text-black dark:text-white hover:bg-green-300 dark:hover:bg-green-500';
+        this.buttonClasses = 'btn btn-sm difficulty-easy bg-green-200 dark:bg-green-600 text-black dark:text-white hover:bg-green-300 dark:hover:bg-green-500';
         break;
       case 'easy':
-        this.buttonClasses = 'btn difficulty-easy bg-green-400 dark:bg-green-700 text-white hover:bg-green-500 dark:hover:bg-green-600';
+        this.buttonClasses = 'btn btn-sm difficulty-easy bg-green-400 dark:bg-green-700 text-white hover:bg-green-500 dark:hover:bg-green-600';
         break;
       case 'medium':
-        this.buttonClasses = 'btn difficulty-medium bg-yellow-400 dark:bg-yellow-600 text-black dark:text-white hover:bg-yellow-500 dark:hover:bg-yellow-500';
+        this.buttonClasses = 'btn btn-sm difficulty-medium bg-yellow-400 dark:bg-yellow-600 text-black dark:text-white hover:bg-yellow-500 dark:hover:bg-yellow-500';
         break;
       case 'hard':
-        this.buttonClasses = 'btn difficulty-hard bg-red-500 dark:bg-red-700 text-white hover:bg-red-600 dark:hover:bg-red-600';
+        this.buttonClasses = 'btn btn-sm difficulty-hard bg-red-500 dark:bg-red-700 text-white hover:bg-red-600 dark:hover:bg-red-600';
         break;
       case 'mix':
-        this.buttonClasses = 'btn difficulty-mix bg-gray-800 text-white rounded-lg transition-all duration-300 px-4 py-2';
+        this.buttonClasses = 'btn-sm difficulty-mix bg-gray-800 text-white text-center rounded-lg transition-all duration-300 font-semibold';
         break;
       default:
         this.buttonClasses = 'btn';

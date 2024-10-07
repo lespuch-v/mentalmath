@@ -102,4 +102,38 @@ public class UserController : ControllerBase
         var userDto = _mapper.Map<UserDto>(user);
         return Ok(userDto);
     }
+
+    [Authorize]
+    [HttpGet("{id}/name")]
+    public async Task<IActionResult> GetUserName(int id)
+    {
+        if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            return Unauthorized();
+
+        var user = await _userRepository.GetUser(id);
+        if(user == null)
+            return NotFound();
+
+        return Ok(new { user.Username });
+    }
+
+    [Authorize]
+    [HttpPut("{id}/name")]
+    public async Task<IActionResult> UpdateUserName(int id, [FromBody] UpdateUserNameDto dto)
+    {
+        if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            return Unauthorized();
+
+        var user = await _userRepository.GetUser(id);
+        if (user == null)
+            return NotFound();
+
+        user.Username = dto.NewUsername;
+
+        if (await _userRepository.SaveAllAsync())
+            return NoContent();
+
+        throw new Exception($"Updating username for user {id} failed on save");
+    }
+
 }

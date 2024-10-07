@@ -8,6 +8,8 @@ import { SubtractionComponent } from './subtraction/subtraction.component';
 import { MultiplicationTableComponent } from './multiplication-table/multiplication-table.component';
 import { MultiplicationComponent } from './multiplication/multiplication.component';
 import { DivisionComponent } from './division/division.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './services/auth-guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,5 +21,6 @@ export const routes: Routes = [
     { path: 'multiplication', component: MultiplicationComponent},
     { path: 'multiplication-table', component: MultiplicationTableComponent},
     { path: 'division', component: DivisionComponent},
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
     { path: '**', component: HomeComponent}
 ];
