@@ -1,0 +1,5 @@
+<button
+  [ngClass]="buttonClasses + ' ' + (value === selectedValue ? 'selected-style' : '')"
+  (click)="onClick()">
+  {{ label | firstLetterUpperCase }}
+</button>

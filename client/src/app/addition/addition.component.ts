@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { InputResultComponent } from '../input-result/input-result.component';
-import { MathOpButtonComponent } from '../math-op-button/math-op-button.component';
+import { GenericButtonComponent } from '../math-op-button/generic-button.component';
 import { NgForOf, NgIf } from '@angular/common';
 import { QuickStatAccuracyRateComponent } from '../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component';
 import { QuickStatCurrentStrikeComponent } from '../quick-stat-current-strike/quick-stat-current-strike.component';
@@ -15,7 +15,7 @@ import { Exercise } from '../models';
   imports: [
     DifficultyButtonComponent,
     InputResultComponent,
-    MathOpButtonComponent,
+    GenericButtonComponent,
     NgForOf,
     NgIf,
     QuickStatAccuracyRateComponent,

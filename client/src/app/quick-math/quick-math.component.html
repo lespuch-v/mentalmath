@@ -10,9 +10,9 @@
 
   <div class="space-x-3 mb-3 flex justify-center">
     <!-- Math operations -->
-    <math-op-button *ngFor="let operation of mathOperations" [selectedOperation]="selectedOperation"
-      [operationName]="operation" [operationType]="operation" (operationSelected)="onOperationChange(operation)">
-    </math-op-button>
+    <app-generic-button *ngFor="let operation of mathOperations" [selectedValue]="selectedOperation"
+      [label]="operation" [value]="operation" (valueSelected)="onOperationChange(operation)">
+    </app-generic-button>
   </div>
 
   <!-- Difficulties buttons  -->
