@@ -22,7 +22,7 @@ export class MyChartComponent implements OnInit {
     const ctx = (document.getElementById('myChart') as HTMLCanvasElement).getContext('2d');
     if (ctx) {
       new Chart(ctx, {
-        type: 'bar', // typ grafu (můžeš změnit na 'line', 'pie', 'doughnut', atd.)
+        type: 'bar',
         data: {
           labels: ['January', 'February', 'March', 'April', 'May'],
           datasets: [

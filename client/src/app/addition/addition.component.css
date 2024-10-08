@@ -15,7 +15,7 @@
 .div7 { grid-area: 4 / 4 / 5 / 5; }
 
 .div1{
-  background-color: cyan;
+  /* background-color: cyan; */
   width: 250px;
   height: 250px;
 }

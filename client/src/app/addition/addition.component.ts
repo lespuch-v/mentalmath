@@ -9,6 +9,7 @@ import { QuickStatHighestStrikeComponent } from '../quick-stat-highest-strike/qu
 import { QuickStatTotalSolvedComponent } from '../quick-stat-total-solved/quick-stat-total-solved.component';
 import { Exercise } from '../models';
 import { ToastService } from '../services/toast.service';
+import { MyChartComponent } from "../my-chart/my-chart.component";
 
 @Component({
   selector: 'app-addition',
@@ -23,8 +24,9 @@ import { ToastService } from '../services/toast.service';
     QuickStatAccuracyRateComponent,
     QuickStatCurrentStrikeComponent,
     QuickStatHighestStrikeComponent,
-    QuickStatTotalSolvedComponent
-  ],
+    QuickStatTotalSolvedComponent,
+    MyChartComponent
+],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
 })
