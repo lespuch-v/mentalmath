@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { DarkModeToggleComponent } from '../dark-mode-toggler/dark-mode-toggle.component';
 import { LoginModalComponent } from "../login-modal/login-modal.component";
 import { RouterModule } from '@angular/router';
@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements AfterViewInit {
   @ViewChild('loginModal') loginModal!: LoginModalComponent;
   @ViewChild('registerModal') registerModal!: RegisterModalComponent;
 
@@ -26,6 +26,20 @@ export class NavbarComponent {
 
   constructor(private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
+  }
+
+  ngAfterViewInit(): void {
+    // Add click listener to close dropdown when clicked outside
+    document.addEventListener('click', (event: Event) => {
+      const detailsElement = document.getElementById('detailsDropdown') as HTMLDetailsElement;
+      
+      if (detailsElement && detailsElement.hasAttribute('open')) {
+        const target = event.target as HTMLElement;
+        if (!detailsElement.contains(target)) {
+          detailsElement.removeAttribute('open');
+        }
+      }
+    });
   }
 
   openLoginModal(): void {
