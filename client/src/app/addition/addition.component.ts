@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { GenericButtonComponent } from '../math-op-button/generic-button.component';
-import { NgForOf, NgIf } from '@angular/common';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { QuickStatAccuracyRateComponent } from '../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component';
 import { QuickStatCurrentStrikeComponent } from '../quick-stat-current-strike/quick-stat-current-strike.component';
 import { QuickStatHighestStrikeComponent } from '../quick-stat-highest-strike/quick-stat-highest-strike.component';
@@ -18,17 +18,20 @@ import { Exercise } from '../models';
     GenericButtonComponent,
     NgForOf,
     NgIf,
+    NgClass,
     QuickStatAccuracyRateComponent,
     QuickStatCurrentStrikeComponent,
     QuickStatHighestStrikeComponent,
     QuickStatTotalSolvedComponent
   ],
   templateUrl: './addition.component.html',
-  styleUrl: './addition.component.css'
+  styleUrl: './addition.component.css',
 })
 export class AdditionComponent {
 
-  selectedDifficulty: string = 'easy';
+  selectedDifficulty: string = '';
+  isExerciseRunning: boolean = false;
+  selectedLimit: string = '';
   currentExercise: Exercise | null = {
     question: '1+1', difficulty: 'hard', type:'addition', answer:1
   };
@@ -58,5 +61,19 @@ export class AdditionComponent {
   handleDifficultySelection(difficulty: string): void {
     
     this.selectedDifficulty = difficulty;
+  }
+
+  handleSelectLimit($event: string): void {
+    this.selectedLimit = $event
+  }
+
+  startExercise(): void {
+    if(this.selectedDifficulty && this.selectedLimit){
+      this.isExerciseRunning = true;
+
+    }else{
+      console.log('not selected');
+      
+    }
   }
 }

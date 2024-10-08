@@ -1,5 +1,5 @@
 <!-- Difficulty buttons-->
-<div class="container-md">
+<div *ngIf="!isExerciseRunning" class="container-md">
 
   <div class="flex w-full">
     <div class="card bg-base-300 rounded-box grid h-20 flex-grow place-items-center" style="height: 250px;">
@@ -19,34 +19,47 @@
     <div class="divider divider-horizontal">OR</div>
 
     <div class="card bg-base-300 rounded-box grid h-20 flex-grow place-items-center" style="height: 250px;">
-      <button class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-800 transition duration-200 ease-in-out" style="margin:20px">
-        <div class="flex items-center space-x-1">
-          <div class="border-2 border-gray-800 rounded-full p-1" style="background-color: #6935fa;">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
-            </svg>
-          </div>
-          <span>Start Timer</span>
-        </div>
-      </button>
 
-      <button class="bg-white text-gray-700 font-medium py-2 px-4 rounded-md hover:bg-gray-200 transition duration-200 ease-in-out" style="margin:20px">
-      <div class="flex items-center space-x-1">
-        <div class="border-2 border-gray-400 rounded-full p-1" style="background-color: #ffcc00;">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
+      <div class="flex w-full flex-col border-opacity-50 p-3">
+        <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
+          <button (click)="handleSelectLimit('startTimer')" class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-800 transition duration-200 ease-in-out" style="margin:20px">
+            <div class="flex items-center space-x-1">
+              <div class="border-2 border-gray-800 rounded-full p-1" style="background-color: #6935fa;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+                </svg>
+              </div>
+              <span>Start Timer</span>
+            </div>
+          </button>
         </div>
-        <span>No Time Limit</span>
+        <div class="divider">OR</div>
+        <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
+          <button (click)="handleSelectLimit('noTimeLimit')" class="bg-white text-gray-700 font-medium py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200 ease-in-out" style="margin:20px">
+            <div class="flex items-center space-x-1">
+              <div class="border-2 border-gray-400 rounded-full p-1" style="background-color: #ffcc00;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span>No Time Limit</span>
+            </div>
+          </button>
+        </div>
       </div>
-    </button>
     </div>
   </div>
-  <button class="btn btn-primary mt-3 w-full">Start</button>
+
+  <ul class="steps w-full">
+    <li class="step" [ngClass]="{ 'step-primary' : selectedDifficulty  }">Challenge level</li>
+    <li class="step" [ngClass]="{ 'step-primary' : selectedLimit }">Time Limit or Not Limit</li>
+    <li class="step" [ngClass]="{ 'step-primary' : isExerciseRunning}" >Start!</li>
+  </ul>
+  <button (click)="startExercise()" class="btn btn-primary mt-3 w-full">Start</button>
 </div>
 
 
- <!--<div class="parent">
+ <div *ngIf="isExerciseRunning" class="parent">
   <div class="div1"> </div>
   <div class="div2"> </div>
   <div class="div3"> </div>
@@ -66,4 +79,4 @@
   <div class="div5"> </div>
   <div class="div6"> </div>
   <div class="div7"> </div>
-</div> -->
+</div>
