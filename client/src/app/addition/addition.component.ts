@@ -27,6 +27,8 @@ import { Exercise } from '../models';
   styleUrl: './addition.component.css'
 })
 export class AdditionComponent {
+
+  selectedDifficulty: string = 'easy';
   currentExercise: Exercise | null = {
     question: '1+1', difficulty: 'hard', type:'addition', answer:1
   };
@@ -53,8 +55,8 @@ export class AdditionComponent {
     return item;
   }
 
-  onDifficultyChange(difficulty: string): void {
-    // this.selectedDifficulty = difficulty;
-    // this.loadExercise();
+  handleDifficultySelection(difficulty: string): void {
+    
+    this.selectedDifficulty = difficulty;
   }
 }
