@@ -1,0 +1,11 @@
+<div class="toast toast-end">
+    <div
+      *ngFor="let toast of toasts"
+      [ngClass]="getAlertClass(toast.type)"
+      class="alert"
+    >
+      <span>{{ toast.message }}</span>
+      <button (click)="removeToast(toast)" class="btn btn-sm btn-ghost">✕</button>
+    </div>
+  </div>
+  

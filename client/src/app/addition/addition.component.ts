@@ -8,6 +8,7 @@ import { QuickStatCurrentStrikeComponent } from '../quick-stat-current-strike/qu
 import { QuickStatHighestStrikeComponent } from '../quick-stat-highest-strike/quick-stat-highest-strike.component';
 import { QuickStatTotalSolvedComponent } from '../quick-stat-total-solved/quick-stat-total-solved.component';
 import { Exercise } from '../models';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-addition',
@@ -46,9 +47,11 @@ export class AdditionComponent {
     { difficulty: 'mix', tooltip: '?'}
   ]
 
-    onUserAnswerChange($event: number) {
-
+  constructor(private toast: ToastService) {
+    
   }
+
+    onUserAnswerChange($event: number) {}
 
   onSubmit() {
 
@@ -73,7 +76,7 @@ export class AdditionComponent {
 
     }else{
       console.log('not selected');
-      
+      this.toast.showToast({message: 'mkmk', type: 'error'})
     }
   }
 }
