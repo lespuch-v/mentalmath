@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Exercise } from '../models';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
-import { JsonPipe, NgFor, NgIf } from '@angular/common';
+import { JsonPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { GenericButtonComponent } from '../math-op-button/generic-button.component';
 import { QuickStatAccuracyRateComponent } from "../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component";
@@ -24,8 +24,9 @@ import { QuickStatTotalSolvedComponent } from "../quick-stat-total-solved/quick-
     QuickStatAccuracyRateComponent,
     QuickStatCurrentStrikeComponent,
     QuickStatHighestStrikeComponent,
-    QuickStatTotalSolvedComponent
-],
+    QuickStatTotalSolvedComponent,
+    NgClass
+  ],
   templateUrl: './quick-math.component.html',
   styleUrls: ['./quick-math.component.css'],
 })

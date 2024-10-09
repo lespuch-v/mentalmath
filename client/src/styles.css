@@ -6,3 +6,8 @@
 .quick-math-icon{
     font-size: 37px;
 }
+
+.selected-style-two{
+  outline: 3px solid #ff00d0;
+  border-radius: 0.375rem;
+}

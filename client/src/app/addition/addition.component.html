@@ -22,7 +22,7 @@
 
       <div class="flex w-full flex-col border-opacity-50 p-3">
         <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
-          <button (click)="handleSelectLimit('startTimer')" class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-800 transition duration-200 ease-in-out" style="margin:20px">
+          <button (click)="handleSelectLimit('startTimer')" [ngClass]="{'selected-style' : selectedLimit === 'startTimer' }" class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-800 transition duration-200 ease-in-out" style="margin:20px">
             <div class="flex items-center space-x-1">
               <div class="border-2 border-gray-800 rounded-full p-1" style="background-color: #6935fa;">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
@@ -35,12 +35,10 @@
         </div>
         <div class="divider">OR</div>
         <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
-          <button (click)="handleSelectLimit('noTimeLimit')" class="bg-white text-gray-700 font-medium py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200 ease-in-out" style="margin:20px">
-            <div class="flex items-center space-x-1">
-              <div class="border-2 border-gray-400 rounded-full p-1" style="background-color: #ffcc00;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
+          <button (click)="handleSelectLimit('noTimeLimit')" [ngClass]="{'selected-style' : selectedLimit === 'noTimeLimit' }" class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-400 transition duration-200 ease-in-out" style="margin:20px">
+            <div class="flex items-center space-x-2">
+              <div class="border-2 border-gray-400 rounded-full flex items-center justify-center p-2" style="background-color: #ffcc00; width: 32px; height: 32px;">
+                ♾️
               </div>
               <span>No Time Limit</span>
             </div>
@@ -61,7 +59,12 @@
 
  <div *ngIf="isExerciseRunning" class="parent">
   <div class="div1">
-    <app-my-chart></app-my-chart>
+    <app-bar-chart
+      [chartId]="'salesChart'"
+      [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard', 'Mix']"
+      [data]="[30, 50, 70, 90, 110, 120]"
+      [chartTitle]="'Difficulty'">
+    </app-bar-chart>
   </div>
   <div class="div2"> </div>
   <div class="div3"> </div>

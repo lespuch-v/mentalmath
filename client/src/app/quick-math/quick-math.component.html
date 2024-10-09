@@ -17,7 +17,7 @@
 
   <!-- Difficulties buttons  -->
   <div class="flex justify-center space-x-3">
-    <difficulty-button *ngFor="let difficulty of difficulties; trackBy: trackByDifficulty" [label]="difficulty"
+    <difficulty-button *ngFor="let difficulty of difficulties; trackBy: trackByDifficulty" [ngClass]="{ 'selected-style-two' : difficulty === selectedDifficulty }" [label]="difficulty"
       [variant]="difficulty" (clicked)="onDifficultyChange(difficulty)">
     </difficulty-button>
   </div>

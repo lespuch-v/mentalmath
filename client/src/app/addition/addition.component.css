@@ -55,3 +55,7 @@
   width: 250px;
   height: 250px;
 }
+
+.selected-style{
+  outline: 3px solid cyan;
+}

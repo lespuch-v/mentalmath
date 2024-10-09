@@ -10,6 +10,7 @@ import { QuickStatTotalSolvedComponent } from '../quick-stat-total-solved/quick-
 import { Exercise } from '../models';
 import { ToastService } from '../services/toast.service';
 import { MyChartComponent } from "../my-chart/my-chart.component";
+import { BarChartComponent } from '../bar-chart/bar-chart.component';
 
 @Component({
   selector: 'app-addition',
@@ -25,8 +26,9 @@ import { MyChartComponent } from "../my-chart/my-chart.component";
     QuickStatCurrentStrikeComponent,
     QuickStatHighestStrikeComponent,
     QuickStatTotalSolvedComponent,
-    MyChartComponent
-],
+    MyChartComponent,
+    BarChartComponent
+  ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
 })
@@ -50,7 +52,7 @@ export class AdditionComponent {
   ]
 
   constructor(private toast: ToastService) {
-    
+
   }
 
     onUserAnswerChange($event: number) {}
@@ -64,7 +66,7 @@ export class AdditionComponent {
   }
 
   handleDifficultySelection(difficulty: string): void {
-    
+
     this.selectedDifficulty = difficulty;
   }
 

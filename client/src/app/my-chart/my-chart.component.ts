@@ -47,5 +47,4 @@ export class MyChartComponent implements OnInit {
       });
     }
   }
-
 }
