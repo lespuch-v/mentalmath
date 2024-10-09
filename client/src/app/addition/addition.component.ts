@@ -11,6 +11,8 @@ import { Exercise } from '../models';
 import { ToastService } from '../services/toast.service';
 import { MyChartComponent } from "../my-chart/my-chart.component";
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
+import { LineChartComponent } from '../line-chart/line-chart.component';
+import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component';
 
 @Component({
   selector: 'app-addition',
@@ -27,7 +29,9 @@ import { BarChartComponent } from '../bar-chart/bar-chart.component';
     QuickStatHighestStrikeComponent,
     QuickStatTotalSolvedComponent,
     MyChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    LineChartComponent,
+    DoughnutChartComponent
   ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
@@ -40,6 +44,11 @@ export class AdditionComponent {
   currentExercise: Exercise | null = {
     question: '1+1', difficulty: 'hard', type:'addition', answer:1
   };
+
+  imageHexagon: string = './assets/images/winCoin.png'
+
+  timer: any;
+  time: number = 0;
 
   difficulties: { difficulty: string; tooltip: string }[] = [
     { difficulty: 'easy', tooltip: '0-10' },
@@ -55,7 +64,7 @@ export class AdditionComponent {
 
   }
 
-    onUserAnswerChange($event: number) {}
+  onUserAnswerChange($event: number) {}
 
   onSubmit() {
 
@@ -82,5 +91,9 @@ export class AdditionComponent {
       console.log('not selected');
       this.toast.showToast({message: 'mkmk', type: 'error'})
     }
+  }
+
+  stopTimer(): void{
+    this.isExerciseRunning = false;
   }
 }

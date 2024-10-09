@@ -21,31 +21,33 @@
 }
 
 .div2{
-  background-color: yellow;
+  /*background-color: yellow;*/
   width: 250px;
   height: 250px;
 }
 
 .div3{
-  background-color: orangered;
+  /*background-color: orangered;*/
   width: 250px;
   height: 250px;
+  display: flex;
+  justify-content: center;
 }
 
 .div4{
-  background-color: blueviolet;
+  /*background-color: blueviolet;*/
   width: 770px;
   height: 250px;
 }
 
 .div5{
-  background-color: blue;
+  /*background-color: blue;*/
   width: 250px;
   height: 250px;
 }
 
 .div6{
-  background-color: hotpink;
+  /*background-color: hotpink;*/
   width: 250px;
   height: 250px;
 }

@@ -1,5 +1,5 @@
 import { Component, Input, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
-import { Chart, registerables, ChartConfiguration } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 
 @Component({
   selector: 'app-bar-chart',
