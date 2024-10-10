@@ -102,10 +102,14 @@
 
   </div>
   <div class="div5">
-    <img
-      class="mask mask-hexagon-2"
-      style="width: 100%;"
-      [src]="imageHexagon" />
+    <app-radar-chart
+      [chartId]="'customRadarChartId'"
+      [labels]="['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5']"
+      [data]="[10, 20, 30, 40, 50]"
+      [chartTitle]="'My Custom Radar Chart'"
+      [datasets]="customDatasets">
+    </app-radar-chart>
+
   </div>
   <div class="div6">
     <app-doughnut-chart

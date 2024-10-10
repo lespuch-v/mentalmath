@@ -13,6 +13,7 @@ import { MyChartComponent } from "../my-chart/my-chart.component";
 import { BarChartComponent } from '../bar-chart/bar-chart.component';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component';
+import { RadarChartComponent } from '../radar-chart/radar-chart.component';
 
 @Component({
   selector: 'app-addition',
@@ -31,7 +32,8 @@ import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.compone
     MyChartComponent,
     BarChartComponent,
     LineChartComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    RadarChartComponent
   ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
@@ -44,6 +46,13 @@ export class AdditionComponent {
   currentExercise: Exercise | null = {
     question: '1+1', difficulty: 'hard', type:'addition', answer:1
   };
+
+  customDatasets: { label: string, data: number[] }[] = [
+    {
+      label: 'Dataset 1',
+      data: [15, 25, 35, 45, 55]
+    }
+  ];
 
   imageHexagon: string = './assets/images/winCoin.png'
 
