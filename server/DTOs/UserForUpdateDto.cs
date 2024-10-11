@@ -2,7 +2,7 @@
 {
     public class UserForUpdateDto
     {
-        public string Username { get; set; }
+        public string NewUsername { get; set; }
         // Add other properties you allow to update
     }
 }

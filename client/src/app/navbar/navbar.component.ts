@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { DarkModeToggleComponent } from '../dark-mode-toggler/dark-mode-toggle.component';
-import { LoginModalComponent } from "../login-modal/login-modal.component";
+import { LoginModalComponent } from '../login-modal/login-modal.component';
 import { RouterModule } from '@angular/router';
-import { RegisterModalComponent } from "../register-modal/register-modal.component";
+import { RegisterModalComponent } from '../register-modal/register-modal.component';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ToastService } from '../services/toast.service';
+import { ChangeNameModalComponent } from '../change-name-modal/change-name-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -17,26 +18,40 @@ import { ToastService } from '../services/toast.service';
     RouterModule,
     RegisterModalComponent,
     NgIf,
-    AsyncPipe
-],
+    AsyncPipe,
+    ChangeNameModalComponent
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements AfterViewInit {
   @ViewChild('loginModal') loginModal!: LoginModalComponent;
   @ViewChild('registerModal') registerModal!: RegisterModalComponent;
+  @ViewChild('changeNameModal') changeNameModal!: ChangeNameModalComponent;
 
   isLoggedIn$!: Observable<boolean>;
+  userName: string = 'Guest!';
 
-  constructor(private authService: AuthService, private toast: ToastService ) {
+  constructor(private authService: AuthService, private toast: ToastService) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
+
+    this.isLoggedIn$.subscribe(isLoggedIn => {
+      if (isLoggedIn) {
+        const user = JSON.parse(localStorage.getItem('user')!);
+        if (user && user.username){
+          this.userName = user.username
+        }
+      }else {
+        this.userName = 'Guest!'
+      }
+    })
   }
 
   ngAfterViewInit(): void {
     // Add click listener to close dropdown when clicked outside
     document.addEventListener('click', (event: Event) => {
       const detailsElement = document.getElementById('detailsDropdown') as HTMLDetailsElement;
-      
+
       if (detailsElement && detailsElement.hasAttribute('open')) {
         const target = event.target as HTMLElement;
         if (!detailsElement.contains(target)) {
@@ -47,7 +62,7 @@ export class NavbarComponent implements AfterViewInit {
   }
 
   openLoginModal(): void {
-    this.loginModal.openModal();
+    this.loginModal.openLoginModal();
   }
 
   openRegisterModal(): void {
@@ -58,5 +73,9 @@ export class NavbarComponent implements AfterViewInit {
     this.authService.logout();
     this.toast.showToast({message: 'You’re logged out.', type: 'info'})
     console.log('User logged out');
+  }
+
+  openChangeNameModal(): void {
+    this.changeNameModal.openChangeNameModal();
   }
 }

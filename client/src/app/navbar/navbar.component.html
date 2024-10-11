@@ -45,7 +45,7 @@
       <li>
         <details id="detailsDropdown">
           <summary>Calculations</summary>
-          <ul class="p-2 space-y-2">
+          <ul class="p-2 space-y-2 z-10">
             <li><a routerLink="/addition" routerLinkActive="bg-gray-500 text-white">Addition</a></li>
             <li><a routerLink="/subtraction" routerLinkActive="bg-gray-500 text-white">Subtraction</a></li>
             <li><a routerLink="/multiplication" routerLinkActive="bg-gray-500 text-white">Multiplication</a></li>
@@ -63,11 +63,13 @@
       <button (click)="openLoginModal()" class="btn btn-primary btn-sm">Login</button>
       <button (click)="openRegisterModal()" class="btn btn-secondary border-none btn-sm bg-gray-700 hover:bg-gray-900 text-white">Sign Up</button>
     </div>
-    <div *ngIf="(isLoggedIn$ |async)">
+    <div class="space-x-3" *ngIf="(isLoggedIn$ |async)">
+      <button class="btn btn-primary btn-sm" (click)="openChangeNameModal()">👋Hi, {{ userName }}</button>
       <button (click)="logout()" class="btn btn-neutral btn-sm">Logout</button>
     </div>
   </div>
 
   <app-login-modal #loginModal></app-login-modal>
+  <app-change-name-modal #changeNameModal></app-change-name-modal>
   <app-register-modal #registerModal></app-register-modal>
 </div>

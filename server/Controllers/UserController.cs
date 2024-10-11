@@ -6,6 +6,7 @@ using server.DTOs;
 using server.Repositories;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 [Authorize]
 [ApiController]
@@ -13,12 +14,14 @@ using Microsoft.EntityFrameworkCore;
 public class UserController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly ILogger<UserController> _logger;
     private readonly IMapper _mapper;
 
-    public UserController(IUserRepository userRepository, IMapper mapper)
+    public UserController(IUserRepository userRepository, IMapper mapper, ILogger<UserController> logger)
     {
         _userRepository = userRepository;
         _mapper = mapper;
+        _logger = logger;
     }
 
     [HttpGet("{id}")]
@@ -103,7 +106,6 @@ public class UserController : ControllerBase
         return Ok(userDto);
     }
 
-    [Authorize]
     [HttpGet("{id}/name")]
     public async Task<IActionResult> GetUserName(int id)
     {
@@ -117,23 +119,30 @@ public class UserController : ControllerBase
         return Ok(new { user.Username });
     }
 
-    [Authorize]
-    [HttpPut("{id}/name")]
+    [HttpPut("username/{id}")]
     public async Task<IActionResult> UpdateUserName(int id, [FromBody] UpdateUserNameDto dto)
     {
-        if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            return Unauthorized();
+        try
+        {
+            var user = await _userRepository.GetUser(id);
+            if (user == null)
+            {
+                return NotFound($"User with ID {id} not found");
+            }
 
-        var user = await _userRepository.GetUser(id);
-        if (user == null)
-            return NotFound();
+            user.Username = dto.NewUsername;
 
-        user.Username = dto.NewUsername;
+            if (await _userRepository.SaveAllAsync())
+            {
+                return NoContent();
+            }
 
-        if (await _userRepository.SaveAllAsync())
-            return NoContent();
-
-        throw new Exception($"Updating username for user {id} failed on save");
+            return BadRequest("Failed to update username");
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while updating the username");
+        }
     }
 
 }

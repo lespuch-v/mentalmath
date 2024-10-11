@@ -24,7 +24,7 @@ export class LoginModalComponent {
 
   constructor(private authService: AuthService, private router: Router, private toast: ToastService) {}
 
-  openModal(): void {
+  openLoginModal(): void {
     this.isModalOpen = true;
   }
 
@@ -33,7 +33,6 @@ export class LoginModalComponent {
   }
 
   onSubmit(): void {
-    console.log(this.user)
     this.authService.login(this.user).subscribe({
       next: () => {
         console.log('User successfully logged in');

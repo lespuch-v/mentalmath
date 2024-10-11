@@ -72,19 +72,17 @@ namespace server.Controllers
 
             var claims = new[]
             {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Username)
-        };
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username)
+            };
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(jwtConfig.ExpiresInMinutes),
+                Expires = DateTime.UtcNow.AddMinutes(jwtConfig.TokenLifetime),
                 SigningCredentials = creds,
-                Issuer = jwtConfig.Issuer,
-                Audience = jwtConfig.Audience
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
