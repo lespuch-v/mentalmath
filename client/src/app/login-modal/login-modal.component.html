@@ -20,6 +20,11 @@
             <span class="label-text">Password</span>
           </label>
           <input type="password" class="input input-bordered w-full" [(ngModel)]="user.password" name="password" required />
+          <span 
+            *ngIf="errorMessage"
+            class="text-error bg-error/10 p-2 rounded-md block mt-2 shadow-sm">
+            Incorrect password. Please try again.
+          </span>
         </div>
   
         <div class="form-control mb-4">

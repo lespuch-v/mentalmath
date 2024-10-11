@@ -53,11 +53,21 @@
 }
 
 .div7{
-  background-color: lightsalmon;
+  /* background-color: lightsalmon; */
   width: 250px;
   height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selected-style{
   outline: 3px solid cyan;
+}
+
+
+.text-9xl {
+  font-size: 8rem;
+  line-height: unset;
+  margin-right: 37px;
 }

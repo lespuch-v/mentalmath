@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { RegisterModalComponent } from "../register-modal/register-modal.component";
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
+import { AsyncPipe, NgIf } from '@angular/common';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,9 @@ import { Observable } from 'rxjs';
     DarkModeToggleComponent,
     LoginModalComponent,
     RouterModule,
-    RegisterModalComponent
+    RegisterModalComponent,
+    NgIf,
+    AsyncPipe
 ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -24,7 +28,7 @@ export class NavbarComponent implements AfterViewInit {
 
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private toast: ToastService ) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
   }
 
@@ -52,6 +56,7 @@ export class NavbarComponent implements AfterViewInit {
 
   logout(): void {
     this.authService.logout();
+    this.toast.showToast({message: 'You’re logged out.', type: 'info'})
     console.log('User logged out');
   }
 }

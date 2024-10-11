@@ -21,17 +21,26 @@
     <div class="card bg-base-300 rounded-box grid h-20 flex-grow place-items-center" style="height: 250px;">
 
       <div class="flex w-full flex-col border-opacity-50 p-3">
-        <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
-          <button (click)="handleSelectLimit('startTimer')" [ngClass]="{'selected-style' : selectedLimit === 'startTimer' }" class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-800 transition duration-200 ease-in-out" style="margin:20px">
-            <div class="flex items-center space-x-1">
-              <div class="border-2 border-gray-800 rounded-full p-1" style="background-color: #6935fa;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
-                </svg>
-              </div>
-              <span>Start Timer</span>
+        <!-- ⏳❌ Dropdown button no time limit  -->
+        <div class="dropdown">
+          <div tabindex="0" role="button" 
+          [ngClass]="{'selected-style' : selectedLimit === '5min' || selectedLimit === '10min' || selectedLimit === '30min'}"
+               class="bg-gray-700 text-white font-medium py-2 px-4 rounded-md hover:bg-gray-800 transition duration-200 ease-in-out m-5 flex items-center space-x-1">
+            <div class="border-2 border-gray-800 rounded-full p-1" style="background-color: #6935fa;">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+              </svg>
             </div>
-          </button>
+            <span>Start Timer</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 ml-2">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+          <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[50] w-52 p-2 shadow">
+            <li><a (click)="handleSelectLimit('5min')">5min Timer</a></li>
+            <li><a (click)="handleSelectLimit('10min')">10min Timer</a></li>
+            <li><a (click)="handleSelectLimit('30min')">30min Timer</a></li>
+          </ul>
         </div>
         <div class="divider">OR</div>
         <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
@@ -104,8 +113,8 @@
   <div class="div5">
     <app-radar-chart
       [chartId]="'customRadarChartId'"
-      [labels]="['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4', 'Skill 5']"
-      [data]="[10, 20, 30, 40, 50]"
+      [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard']"
+      [data]="[10, 20, 30, 40, 50, 0]"
       [chartTitle]="'My Custom Radar Chart'"
       [datasets]="customDatasets">
     </app-radar-chart>
@@ -119,5 +128,7 @@
       [chartTitle]="'Performance'"
     ></app-doughnut-chart>
   </div>
-  <div class="div7"> </div>
+  <div class="div7">
+    <app-solved-problems></app-solved-problems>
+  </div>
 </div>

@@ -14,6 +14,7 @@ import { BarChartComponent } from '../bar-chart/bar-chart.component';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component';
 import { RadarChartComponent } from '../radar-chart/radar-chart.component';
+import { SolvedProblemsComponent } from "../solved-problems/solved-problems.component";
 
 @Component({
   selector: 'app-addition',
@@ -33,8 +34,9 @@ import { RadarChartComponent } from '../radar-chart/radar-chart.component';
     BarChartComponent,
     LineChartComponent,
     DoughnutChartComponent,
-    RadarChartComponent
-  ],
+    RadarChartComponent,
+    SolvedProblemsComponent
+],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
 })

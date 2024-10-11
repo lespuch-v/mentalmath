@@ -58,9 +58,14 @@
     </ul>
   </div>
   <div class="navbar-end space-x-3 z-50">
-    <dark-mode-toggle></dark-mode-toggle>
-    <button (click)="openLoginModal()" class="btn btn-primary btn-sm">Login</button>
-    <button (click)="openRegisterModal()" class="btn btn-secondary border-none btn-sm bg-gray-700 hover:bg-gray-900 text-white">Sign Up</button>
+    <dark-mode-toggle style="margin-top: 7px;"></dark-mode-toggle>
+    <div class="space-x-3 z-50" *ngIf="!(isLoggedIn$ |async)">
+      <button (click)="openLoginModal()" class="btn btn-primary btn-sm">Login</button>
+      <button (click)="openRegisterModal()" class="btn btn-secondary border-none btn-sm bg-gray-700 hover:bg-gray-900 text-white">Sign Up</button>
+    </div>
+    <div *ngIf="(isLoggedIn$ |async)">
+      <button (click)="logout()" class="btn btn-neutral btn-sm">Logout</button>
+    </div>
   </div>
 
   <app-login-modal #loginModal></app-login-modal>
