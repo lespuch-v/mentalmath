@@ -17,6 +17,7 @@ import { RadarChartComponent } from '../radar-chart/radar-chart.component';
 import { SolvedProblemsComponent } from "../solved-problems/solved-problems.component";
 import { CalculationsService } from '../services/calculations.service';
 import { TimerService } from '../timer.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-addition',
@@ -51,6 +52,7 @@ export class AdditionComponent implements OnInit{
   userAnswer: number | null = null;
   isAnswerCorrect: boolean | null = null;
   timerValue: number = 0;
+  private timeSubscription?: Subscription;
 
   customDatasets: { label: string, data: number[] }[] = [
     {
@@ -114,6 +116,7 @@ export class AdditionComponent implements OnInit{
   }
 
   startExercise(): void {
+    // Start with timer 
     if (this.selectedDifficulty && this.selectedLimit) {
       this.isExerciseRunning = true;
       this.loadExercise();
@@ -130,6 +133,11 @@ export class AdditionComponent implements OnInit{
       if (selectedTime !== Infinity) {
         this.timerService.startTimer(selectedTime);
       }
+
+      this.timeSubscription = this.timerService.timer$.subscribe(time => {
+        this.timerValue = time
+      })
+      // Start without timer 
     } else {
       this.toast.showToast({
         message: 'Difficulty or time limit not selected.',
@@ -149,7 +157,7 @@ export class AdditionComponent implements OnInit{
     this.selectedDifficulty = difficulty;
   }
 
-  handleSelectLimit(limit: string): void {
+  handleSelectLimit(limit: string): void {    
     this.selectedLimit = limit
   }
 

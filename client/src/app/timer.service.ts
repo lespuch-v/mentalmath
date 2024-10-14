@@ -8,6 +8,7 @@ export class TimerService {
   private timerSubject = new BehaviorSubject<number>(0);
   private timerSubscription?: Subscription;
   private remainingTime = 0;
+  private isPaused = false;
 
   timer$ = this.timerSubject.asObservable();
 
@@ -36,5 +37,17 @@ export class TimerService {
     this.stopTimer();
     this.remainingTime = 0;
     this.timerSubject.next(this.remainingTime);
+  }
+
+  pauseTimer() {
+    if (this.timerSubscription && !this.isPaused) {
+      this.isPaused = true;
+    }
+  }
+
+  resumeTimer() {
+    if(this.timerSubscription && this.isPaused) {
+      this.isPaused = false;
+    }
   }
 }
