@@ -75,7 +75,9 @@
       [chartTitle]="'Difficulty'">
     </app-bar-chart>
   </div>
+
   <div class="div2">
+      Rework this chart show point gathered over time
     <app-line-chart
       [chartId]="'lineChart'"
       [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard', 'Mix']"
@@ -106,19 +108,13 @@
                       (enterPressed)="onSubmit()">
         </input-result>
       </div>
-
     </div>
 
   </div>
   <div class="div5">
-    <app-radar-chart
-      [chartId]="'customRadarChartId'"
-      [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard']"
-      [data]="[10, 20, 30, 40, 50, 0]"
-      [chartTitle]="'My Custom Radar Chart'"
-      [datasets]="customDatasets">
-    </app-radar-chart>
-
+    <span class="countdown font-mono text-4xl flex justify-center">
+      Difficulty {{selectedDifficulty |  firstLetterUpperCase }}
+    </span>
   </div>
   <div class="div6">
     <app-doughnut-chart
@@ -129,6 +125,7 @@
     ></app-doughnut-chart>
   </div>
   <div class="div7">
+    im thinking this could be points
     <app-solved-problems></app-solved-problems>
   </div>
 </div>

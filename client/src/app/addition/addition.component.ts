@@ -18,6 +18,7 @@ import { SolvedProblemsComponent } from "../solved-problems/solved-problems.comp
 import { CalculationsService } from '../services/calculations.service';
 import { TimerService } from '../timer.service';
 import { Subscription } from 'rxjs';
+import { FirstLetterUpperCasePipe } from "../utils/first-letter-upper-case.pipe";
 
 @Component({
   selector: 'app-addition',
@@ -39,7 +40,8 @@ import { Subscription } from 'rxjs';
     DoughnutChartComponent,
     RadarChartComponent,
     SolvedProblemsComponent,
-    JsonPipe
+    JsonPipe,
+    FirstLetterUpperCasePipe
 ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
