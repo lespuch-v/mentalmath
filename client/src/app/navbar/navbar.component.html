@@ -70,6 +70,6 @@
   </div>
 
   <app-login-modal #loginModal></app-login-modal>
-  <app-change-name-modal #changeNameModal></app-change-name-modal>
+  <app-change-name-modal (nameChanged)="onNameChanged($event)" #changeNameModal></app-change-name-modal>
   <app-register-modal #registerModal></app-register-modal>
 </div>

@@ -38,7 +38,7 @@ export class LoginModalComponent {
         console.log('User successfully logged in');
         this.toast.showToast({message: 'You\'ve successfully logged in. Enjoy your session!', type: 'success'})
         this.closeModal();
-        this.router.navigate(['/']);
+        this.router.navigate(['/rapid']);
       },
       error: (err: HttpErrorResponse) => {
         console.error('Login failed:', err);

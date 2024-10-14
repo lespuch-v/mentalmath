@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ToastService } from '../services/toast.service';
 import { ChangeNameModalComponent } from '../change-name-modal/change-name-modal.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -32,7 +33,7 @@ export class NavbarComponent implements AfterViewInit {
   isLoggedIn$!: Observable<boolean>;
   userName: string = 'Guest!';
 
-  constructor(private authService: AuthService, private toast: ToastService) {
+  constructor(private authService: AuthService, private toast: ToastService, private user: UserService) {
     this.isLoggedIn$ = this.authService.isLoggedIn();
 
     this.isLoggedIn$.subscribe(isLoggedIn => {
@@ -77,5 +78,9 @@ export class NavbarComponent implements AfterViewInit {
 
   openChangeNameModal(): void {
     this.changeNameModal.openChangeNameModal();
+  }
+
+  onNameChanged(newName: string): void {
+    this.userName = newName
   }
 }
