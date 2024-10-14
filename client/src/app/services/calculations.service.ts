@@ -65,25 +65,33 @@ export class CalculationsService {
     let max: number;
 
     switch (difficulty) {
-      case 'super easy':
+      case 'basic':
         min = 1;
         max = 5;
         break;
-      case 'basic':
-        min = 1;
-        max = 9;
-        break;
       case 'easy':
-        min = 10;
+        min = 1;
+        max = 10;
+        break;
+      case 'intermediate':
+        min = 11;
         max = 99;
         break;
       case 'medium':
         min = 100;
         max = 999;
         break;
-      case 'hard':
+      case 'challenging':
         min = 1000;
         max = 9999;
+        break;
+      case 'hard':
+        min = 10000;
+        max = 99999;
+        break;
+      case 'expert':
+        min = 100000;
+        max = 999999;
         break;
       default:
         throw new Error('Invalid difficulty level...');
@@ -94,6 +102,7 @@ export class CalculationsService {
 
     return { num1, num2 };
   }
+
 
   /**
    * Generates a random integer between `min` and `max` (inclusive).

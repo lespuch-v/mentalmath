@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { GenericButtonComponent } from '../math-op-button/generic-button.component';
@@ -15,6 +15,8 @@ import { LineChartComponent } from '../line-chart/line-chart.component';
 import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component';
 import { RadarChartComponent } from '../radar-chart/radar-chart.component';
 import { SolvedProblemsComponent } from "../solved-problems/solved-problems.component";
+import { CalculationsService } from '../services/calculations.service';
+import { TimerService } from '../timer.service';
 
 @Component({
   selector: 'app-addition',
@@ -40,14 +42,15 @@ import { SolvedProblemsComponent } from "../solved-problems/solved-problems.comp
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
 })
-export class AdditionComponent {
+export class AdditionComponent implements OnInit{
 
   selectedDifficulty: string = '';
   isExerciseRunning: boolean = false;
   selectedLimit: string = '';
-  currentExercise: Exercise | null = {
-    question: '1+1', difficulty: 'hard', type:'addition', answer:1
-  };
+  currentExercise: Exercise | null = null;
+  userAnswer: number | null = null;
+  isAnswerCorrect: boolean | null = null;
+  timerValue: number = 0;
 
   customDatasets: { label: string, data: number[] }[] = [
     {
@@ -55,11 +58,6 @@ export class AdditionComponent {
       data: [15, 25, 35, 45, 55]
     }
   ];
-
-  imageHexagon: string = './assets/images/winCoin.png'
-
-  timer: any;
-  time: number = 0;
 
   difficulties: { difficulty: string; tooltip: string }[] = [
     { difficulty: 'easy', tooltip: '0-10' },
@@ -71,40 +69,101 @@ export class AdditionComponent {
     { difficulty: 'mix', tooltip: '?'}
   ]
 
-  constructor(private toast: ToastService) {
+  constructor(
+    private toast: ToastService, 
+    private calculationsService: CalculationsService,
+    private timerService: TimerService
+  ) {}
 
+  ngOnInit() {
+    this.timerService.timer$.subscribe((time) => {
+      this.timerValue = time;
+
+      if (time <= 0 && this.isExerciseRunning) {
+        this.handleTimeUp();
+      }
+    })
   }
 
-  onUserAnswerChange($event: number) {}
+  handleTimeUp(): void {
+    this.isExerciseRunning = false;
+    this.toast.showToast({ message: 'Time is up!', type: 'info'})
+  }
+
+  onUserAnswerChange(answer: number): void {
+    this.userAnswer = answer;
+  }
 
   onSubmit() {
+    if (this.currentExercise !== null && this.userAnswer !== null) {
+      this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
 
-  }
+      // is answer correct ✅
+      if (this.isAnswerCorrect) {
+        this.loadExercise();
+        // answer is incorrect ❌
+      }else {
 
-  trackByDifficulty(index: number, item: string): string {
-    return item;
-  }
+      }
 
-  handleDifficultySelection(difficulty: string): void {
-
-    this.selectedDifficulty = difficulty;
-  }
-
-  handleSelectLimit($event: string): void {
-    this.selectedLimit = $event
-  }
-
-  startExercise(): void {
-    if(this.selectedDifficulty && this.selectedLimit){
-      this.isExerciseRunning = true;
-
-    }else{
-      console.log('not selected');
-      this.toast.showToast({message: 'mkmk', type: 'error'})
+      setTimeout(() => {
+        this.isAnswerCorrect = null;
+        this.userAnswer = null;
+      }, 500);
     }
   }
 
-  stopTimer(): void{
+  startExercise(): void {
+    if (this.selectedDifficulty && this.selectedLimit) {
+      this.isExerciseRunning = true;
+      this.loadExercise();
+  
+      const timeLimits: { [key: string]: number } = {
+        '1min': 60,
+        '5min': 300,
+        '10min': 600,
+        'noTimeLimit': Infinity,
+      };
+  
+      const selectedTime = timeLimits[this.selectedLimit];
+  
+      if (selectedTime !== Infinity) {
+        this.timerService.startTimer(selectedTime);
+      }
+    } else {
+      this.toast.showToast({
+        message: 'Difficulty or time limit not selected.',
+        type: 'warning',
+      });
+      this.timerService.resetTimer();
+    }
+  }
+
+  stopTimer(): void {
     this.isExerciseRunning = false;
+    this.timerService.stopTimer();
+  }
+  
+
+  handleDifficultySelection(difficulty: string): void {
+    this.selectedDifficulty = difficulty;
+  }
+
+  handleSelectLimit(limit: string): void {
+    this.selectedLimit = limit
+  }
+
+  loadExercise(): void {
+    if (this.selectedDifficulty && this.selectedLimit) {
+      this.calculationsService.generateExercise(this.selectedDifficulty, 'addition')
+        .subscribe((exercise:Exercise) => {
+          this.currentExercise = exercise;
+          this.isExerciseRunning = true;
+          console.log(this.currentExercise)
+        });
+    }else {
+      console.log('Difficulty or time limit not selected.')
+      this.toast.showToast({message: 'Difficulty or time limit not selected.', type: 'warning'})
+    }
   }
 }
