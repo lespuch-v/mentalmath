@@ -44,6 +44,11 @@
   /*background-color: blue;*/
   width: 250px;
   height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem!important;
 }
 
 .div6{
@@ -59,6 +64,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .selected-style{
