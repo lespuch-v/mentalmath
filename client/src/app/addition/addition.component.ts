@@ -2,7 +2,7 @@ import { Component, OnInit, Pipe } from '@angular/core';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { GenericButtonComponent } from '../math-op-button/generic-button.component';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { JsonPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { QuickStatAccuracyRateComponent } from '../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component';
 import { QuickStatCurrentStrikeComponent } from '../quick-stat-current-strike/quick-stat-current-strike.component';
 import { QuickStatHighestStrikeComponent } from '../quick-stat-highest-strike/quick-stat-highest-strike.component';
@@ -38,7 +38,8 @@ import { Subscription } from 'rxjs';
     LineChartComponent,
     DoughnutChartComponent,
     RadarChartComponent,
-    SolvedProblemsComponent
+    SolvedProblemsComponent,
+    JsonPipe
 ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
@@ -127,15 +128,22 @@ export class AdditionComponent implements OnInit{
         '10min': 600,
         'noTimeLimit': Infinity,
       };
-  
+
       const selectedTime = timeLimits[this.selectedLimit];
   
       if (selectedTime !== Infinity) {
         this.timerService.startTimer(selectedTime);
       }
 
+      if (this.timeSubscription) {
+        this.timeSubscription.unsubscribe();
+      }
+
       this.timeSubscription = this.timerService.timer$.subscribe(time => {
-        this.timerValue = time
+        this.timerValue = time;
+        if (selectedTime === Infinity) {
+          this.timerValue = 0;
+        }
       })
       // Start without timer 
     } else {
@@ -144,6 +152,7 @@ export class AdditionComponent implements OnInit{
         type: 'warning',
       });
       this.timerService.resetTimer();
+      this.timerValue = 0;
     }
   }
 

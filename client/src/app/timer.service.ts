@@ -14,6 +14,7 @@ export class TimerService {
 
   startTimer(durationInSeconds: number) {
     this.stopTimer();
+
     this.remainingTime = durationInSeconds;
     this.timerSubject.next(this.remainingTime);
 
@@ -31,6 +32,7 @@ export class TimerService {
     if (this.timerSubscription) {
       this.timerSubscription.unsubscribe();
     }
+    this.timerSubscription = undefined;
   }
 
   resetTimer() {
