@@ -72,3 +72,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+input::placeholder {
+  color: #a6adbb4b;
+}
