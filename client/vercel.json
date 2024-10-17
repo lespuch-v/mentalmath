@@ -1,6 +1,15 @@
 {
     "version": 2,
     "public": false,
+    "builds": [
+      {
+        "src": "client/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist/trachtenbergsystem"
+        }
+      }
+    ],
     "routes": [
       { "src": "/(.*)", "dest": "/index.html" }
     ]
