@@ -22,5 +22,5 @@ export const routes: Routes = [
     { path: 'multiplication-table', component: MultiplicationTableComponent},
     { path: 'division', component: DivisionComponent},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-    { path: '**', component: HomeComponent}
+    { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
