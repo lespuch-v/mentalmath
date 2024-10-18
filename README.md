@@ -1,27 +1,74 @@
-# Trachtenbergsystem
+# Mental Math Project
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+![image](https://github.com/user-attachments/assets/6b075a06-de30-4e56-b405-e917e6cbc5ca)
 
-## Development server
+A web application designed to help users improve their mental math skills through interactive exercises and challenges.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- Variety of mental math exercises
+- User progress tracking
+- Difficulty levels to suit all skill levels
+- Fully functional login and registration system
+- Responsive design for seamless use on various devices
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tech Stack
 
-## Build
+- Frontend: Angular
+- Backend: ASP.NET Core
+- Styling: Tailwind CSS with Daisy UI
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Installation
 
-## Running unit tests
+1. Clone the repository:
+   ```
+   git clone https://github.com/yourusername/mental-math-project.git
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Navigate to the project directory:
+   ```
+   cd mental-math-project
+   ```
 
-## Running end-to-end tests
+3. Install frontend dependencies:
+   ```
+   cd ClientApp
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. Install backend dependencies:
+   ```
+   cd ../
+   dotnet restore
+   ```
 
-## Further help
+5. Set up your database connection string in `appsettings.json`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+6. Run database migrations:
+   ```
+   dotnet ef database update
+   ```
+
+## Running the Application
+
+1. Start the backend server:
+   ```
+   dotnet run
+   ```
+
+2. In a separate terminal, start the Angular development server:
+   ```
+   cd ClientApp
+   ng serve
+   ```
+
+3. Open your browser and navigate to `http://localhost:4200`
+
+## Screenshots
+
+![image](https://github.com/user-attachments/assets/db2c7fe8-c227-4082-ac6a-d0de16d7da16)
+
+![image](https://github.com/user-attachments/assets/0a6c5ce1-bc79-483b-a575-684cb40b7084)
+
+![Exercise Interface](path/to/exercise-screenshot.png)
+*Mental math exercise interface*
