@@ -1,8 +1,8 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnDestroy, OnInit, Pipe } from '@angular/core';
 import { DifficultyButtonComponent } from '../difficulty-button/difficulty-button.component';
 import { InputResultComponent } from '../input-result/input-result.component';
 import { GenericButtonComponent } from '../math-op-button/generic-button.component';
-import { JsonPipe, NgClass, NgForOf, NgIf } from '@angular/common';
+import { DecimalPipe, JsonPipe, NgClass, NgForOf, NgIf } from '@angular/common';
 import { QuickStatAccuracyRateComponent } from '../quick-stat-accuracy-rate/quick-stat-accuracy-rate.component';
 import { QuickStatCurrentStrikeComponent } from '../quick-stat-current-strike/quick-stat-current-strike.component';
 import { QuickStatHighestStrikeComponent } from '../quick-stat-highest-strike/quick-stat-highest-strike.component';
@@ -19,6 +19,7 @@ import { CalculationsService } from '../services/calculations.service';
 import { TimerService } from '../timer.service';
 import { Subscription } from 'rxjs';
 import { FirstLetterUpperCasePipe } from "../utils/first-letter-upper-case.pipe";
+import { PointSystemService } from '../point-system.service';
 
 @Component({
   selector: 'app-addition',
@@ -41,12 +42,13 @@ import { FirstLetterUpperCasePipe } from "../utils/first-letter-upper-case.pipe"
     RadarChartComponent,
     SolvedProblemsComponent,
     JsonPipe,
-    FirstLetterUpperCasePipe
-],
+    FirstLetterUpperCasePipe,
+    DecimalPipe
+  ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
 })
-export class AdditionComponent implements OnInit{
+export class AdditionComponent implements OnInit, OnDestroy {
 
   selectedDifficulty: string = '';
   isExerciseRunning: boolean = false;
@@ -72,22 +74,36 @@ export class AdditionComponent implements OnInit{
     { difficulty: 'hard', tooltip: '10000-99999'},
     { difficulty: 'expert', tooltip: '100000-999999'},
     { difficulty: 'mix', tooltip: '?'}
-  ]
+  ];
+
+  questionStartTime: number = 0;
+  currentPoints: number = 0;
+  currentStreak: number = 0;
+  currentLevel: number = 1;
+  levelProgress: { current: number, required: number } = { current: 0, required: 1000 };
 
   constructor(
-    private toast: ToastService, 
+    private toast: ToastService,
     private calculationsService: CalculationsService,
-    private timerService: TimerService
+    private timerService: TimerService,
+    private pointSystem: PointSystemService
   ) {}
 
   ngOnInit() {
+    // Existing timer subscription
     this.timerService.timer$.subscribe((time) => {
       this.timerValue = time;
-
       if (time <= 0 && this.isExerciseRunning) {
         this.handleTimeUp();
       }
-    })
+    });
+
+    // Add point system subscription
+    this.pointSystem.points$.subscribe(state => {
+      this.currentStreak = state.streak;
+      this.currentLevel = state.currentLevel;
+      this.levelProgress = this.pointSystem.getLevelProgress();
+    });
   }
 
   handleTimeUp(): void {
@@ -101,14 +117,36 @@ export class AdditionComponent implements OnInit{
 
   onSubmit() {
     if (this.currentExercise !== null && this.userAnswer !== null) {
-      this.isAnswerCorrect = this.userAnswer === this.currentExercise.answer;
+      const isCorrect = this.userAnswer === this.currentExercise.answer;
 
-      // is answer correct ✅
-      if (this.isAnswerCorrect) {
+      // Calculate response time in seconds
+      const responseTime = (Date.now() - this.questionStartTime) / 1000;
+
+      // Calculate points
+      const points = this.pointSystem.calculatePoints(
+        this.selectedDifficulty,
+        this.selectedLimit,
+        responseTime,
+        isCorrect
+      );
+
+      // Show points toast if correct
+      if (points > 0) {
+        this.toast.showToast({
+          message: `+${points} points! ${responseTime.toFixed(1)}s`,
+          type: 'success'
+        });
+      } else if (!isCorrect) {
+        this.toast.showToast({
+          message: 'Incorrect! Streak reset',
+          type: 'error'
+        });
+      }
+
+      this.isAnswerCorrect = isCorrect;
+
+      if (isCorrect) {
         this.loadExercise();
-        // answer is incorrect ❌
-      }else {
-
       }
 
       setTimeout(() => {
@@ -119,11 +157,13 @@ export class AdditionComponent implements OnInit{
   }
 
   startExercise(): void {
-    // Start with timer 
+    // Reset points for new session
+    this.pointSystem.resetProgress();
+
     if (this.selectedDifficulty && this.selectedLimit) {
       this.isExerciseRunning = true;
       this.loadExercise();
-  
+
       const timeLimits: { [key: string]: number } = {
         '1min': 60,
         '5min': 300,
@@ -132,7 +172,7 @@ export class AdditionComponent implements OnInit{
       };
 
       const selectedTime = timeLimits[this.selectedLimit];
-  
+
       if (selectedTime !== Infinity) {
         this.timerService.startTimer(selectedTime);
       }
@@ -146,8 +186,7 @@ export class AdditionComponent implements OnInit{
         if (selectedTime === Infinity) {
           this.timerValue = 0;
         }
-      })
-      // Start without timer 
+      });
     } else {
       this.toast.showToast({
         message: 'Difficulty or time limit not selected.',
@@ -162,27 +201,33 @@ export class AdditionComponent implements OnInit{
     this.isExerciseRunning = false;
     this.timerService.stopTimer();
   }
-  
+
 
   handleDifficultySelection(difficulty: string): void {
     this.selectedDifficulty = difficulty;
   }
 
-  handleSelectLimit(limit: string): void {    
+  handleSelectLimit(limit: string): void {
     this.selectedLimit = limit
   }
 
   loadExercise(): void {
     if (this.selectedDifficulty && this.selectedLimit) {
       this.calculationsService.generateExercise(this.selectedDifficulty, 'addition')
-        .subscribe((exercise:Exercise) => {
+        .subscribe((exercise: Exercise) => {
           this.currentExercise = exercise;
           this.isExerciseRunning = true;
-          console.log(this.currentExercise)
+          // Record the start time when loading a new exercise
+          this.questionStartTime = Date.now();
         });
-    }else {
-      console.log('Difficulty or time limit not selected.')
+    } else {
       this.toast.showToast({message: 'Difficulty or time limit not selected.', type: 'warning'})
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.timeSubscription) {
+      this.timeSubscription.unsubscribe();
     }
   }
 }

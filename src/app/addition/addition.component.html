@@ -77,21 +77,38 @@
   </div>
 
   <div class="div2">
-      Rework this chart show point gathered over time
-    <app-line-chart
-      [chartId]="'lineChart'"
-      [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard', 'Mix']"
-      [data]="[30, 50, 70, 90, 110, 120]"
-      [chartTitle]="'Difficulty'">
-    >
-    </app-line-chart>
+    <div class="flex flex-col items-center space-y-2">
+      <div class="stats shadow">
+        <div class="stat">
+          <div class="stat-title">Level</div>
+          <div class="stat-value">{{currentLevel}}</div>
+          <div class="stat-desc">
+            Progress: {{levelProgress.current}}/{{levelProgress.required}}
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-title">Streak</div>
+          <div class="stat-value">{{currentStreak}}x</div>
+          <div class="stat-desc">
+            Multiplier: {{1 + (currentStreak * 0.1) | number:'1.1-1'}}x
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar for level -->
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div class="bg-blue-600 h-2.5 rounded-full"
+             [style.width]="(levelProgress.current / levelProgress.required * 100) + '%'">
+        </div>
+      </div>
+    </div>
   </div>
   <div class="div3">
-
     <!-- Timer ♾️ -->
     <div class="w-full flex-col border-opacity-50">
       <span class="countdown font-mono text-6xl flex justify-center">
-        {{timerValue}}
+        {{timerValue !== 0 ? timerValue : '♾️'}}
       </span>
       <div class="divider">⭐</div>
       <div class="card bg-base-300 rounded-box grid h-20 place-items-center">
@@ -111,6 +128,7 @@
     </div>
 
   </div>
+
   <div class="div5">
     <span class="countdown font-mono text-4xl flex justify-center">
       Difficulty {{selectedDifficulty |  firstLetterUpperCase }}
@@ -125,7 +143,6 @@
     ></app-doughnut-chart>
   </div>
   <div class="div7">
-    im thinking this could be points
     <app-solved-problems></app-solved-problems>
   </div>
 </div>
