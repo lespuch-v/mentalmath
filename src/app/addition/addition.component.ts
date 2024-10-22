@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs';
 import { FirstLetterUpperCasePipe } from "../utils/first-letter-upper-case.pipe";
 import { PointSystemService } from '../point-system.service';
 import { DifficultyPerformanceComponent } from '../bar-chart/bar-chart.component';
+import { PointsProgressComponent } from '../points-progress/points-progress.component';
 
 @Component({
   selector: 'app-addition',
@@ -43,7 +44,8 @@ import { DifficultyPerformanceComponent } from '../bar-chart/bar-chart.component
     JsonPipe,
     FirstLetterUpperCasePipe,
     DecimalPipe,
-    DifficultyPerformanceComponent
+    DifficultyPerformanceComponent,
+    PointsProgressComponent
   ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
