@@ -10,7 +10,6 @@ import { QuickStatTotalSolvedComponent } from '../quick-stat-total-solved/quick-
 import { Exercise } from '../models';
 import { ToastService } from '../services/toast.service';
 import { MyChartComponent } from "../my-chart/my-chart.component";
-import { BarChartComponent } from '../bar-chart/bar-chart.component';
 import { LineChartComponent } from '../line-chart/line-chart.component';
 import { DoughnutChartComponent } from '../doughnut-chart/doughnut-chart.component';
 import { RadarChartComponent } from '../radar-chart/radar-chart.component';
@@ -20,6 +19,7 @@ import { TimerService } from '../timer.service';
 import { Subscription } from 'rxjs';
 import { FirstLetterUpperCasePipe } from "../utils/first-letter-upper-case.pipe";
 import { PointSystemService } from '../point-system.service';
+import { DifficultyPerformanceComponent } from '../bar-chart/bar-chart.component';
 
 @Component({
   selector: 'app-addition',
@@ -36,14 +36,14 @@ import { PointSystemService } from '../point-system.service';
     QuickStatHighestStrikeComponent,
     QuickStatTotalSolvedComponent,
     MyChartComponent,
-    BarChartComponent,
     LineChartComponent,
     DoughnutChartComponent,
     RadarChartComponent,
     SolvedProblemsComponent,
     JsonPipe,
     FirstLetterUpperCasePipe,
-    DecimalPipe
+    DecimalPipe,
+    DifficultyPerformanceComponent
   ],
   templateUrl: './addition.component.html',
   styleUrl: './addition.component.css',
