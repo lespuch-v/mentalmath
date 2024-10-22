@@ -76,6 +76,13 @@ export class AdditionComponent implements OnInit, OnDestroy {
     { difficulty: 'mix', tooltip: '?'}
   ];
 
+  statistics = {
+    correct: 0,
+    incorrect: 0,
+    accuracy: 0,
+    averagePoints: 0
+  };
+
   questionStartTime: number = 0;
   currentPoints: number = 0;
   currentStreak: number = 0;
@@ -103,6 +110,16 @@ export class AdditionComponent implements OnInit, OnDestroy {
       this.currentStreak = state.streak;
       this.currentLevel = state.currentLevel;
       this.levelProgress = this.pointSystem.getLevelProgress();
+    });
+
+    this.pointSystem.points$.subscribe(() => {
+      const stats = this.pointSystem.getAnswerStatistics();
+      this.statistics = {
+        correct: stats.correct,
+        incorrect: stats.incorrect,
+        accuracy: stats.accuracy,
+        averagePoints: stats.averagePoints
+      };
     });
   }
 
