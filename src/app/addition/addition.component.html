@@ -68,15 +68,6 @@
 
  <div *ngIf="isExerciseRunning" class="parent">
   <div class="div1">
-    <app-bar-chart
-      [chartId]="'difficultyChartId'"
-      [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard', 'Mix']"
-      [data]="[30, 50, 70, 90, 110, 120]"
-      [chartTitle]="'Difficulty'">
-    </app-bar-chart>
-  </div>
-
-  <div class="div2">
     <div class="flex flex-col items-center space-y-2">
       <div class="stats shadow">
         <div class="stat">
@@ -95,15 +86,21 @@
           </div>
         </div>
       </div>
-
-      <!-- Progress bar for level -->
-      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-        <div class="bg-blue-600 h-2.5 rounded-full"
-             [style.width]="(levelProgress.current / levelProgress.required * 100) + '%'">
-        </div>
-      </div>
-    </div>
   </div>
+
+  </div>
+   <div class="div2">
+    <span class="countdown font-mono text-4xl flex justify-center">
+      Difficulty {{selectedDifficulty |  firstLetterUpperCase }}
+    </span>
+     <!-- Progress bar for level -->
+     <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+       <div class="bg-blue-600 h-2.5 rounded-full"
+            [style.width]="(levelProgress.current / levelProgress.required * 100) + '%'">
+       </div>
+     </div>
+   </div>
+
   <div class="div3">
     <!-- Timer ♾️ -->
     <div class="w-full flex-col border-opacity-50">
@@ -130,9 +127,12 @@
   </div>
 
   <div class="div5">
-    <span class="countdown font-mono text-4xl flex justify-center">
-      Difficulty {{selectedDifficulty |  firstLetterUpperCase }}
-    </span>
+    <app-bar-chart
+      [chartId]="'difficultyChartId'"
+      [labels]="['Easy', 'Intermediate', 'Medium', 'Challenging', 'Hard', 'Mix']"
+      [data]="[30, 50, 70, 90, 110, 120]"
+      [chartTitle]="'Difficulty'">
+    </app-bar-chart>
   </div>
   <div class="div6">
     <app-doughnut-chart
@@ -143,6 +143,5 @@
     ></app-doughnut-chart>
   </div>
   <div class="div7">
-    <app-solved-problems></app-solved-problems>
   </div>
 </div>
