@@ -1,50 +1,212 @@
-<ul class="menu menu-horizontal bg-base-200 rounded-box">
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    </a>
-  </li>
-  <li>
-    <a>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-5 w-5"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    </a>
-  </li>
-</ul>
+<div class="container mx-auto px-4 py-8 max-w-4xl">
+  <!-- Hero Section -->
+  <div class="hero bg-base-200 rounded-xl p-8 mb-8">
+    <div class="hero-content text-center">
+      <div class="max-w-2xl">
+        <h1 class="text-5xl font-bold mb-4">Trachtenberg Speed Mathematics</h1>
+        <p class="text-lg mb-6">
+          A revolutionary system for lightning-fast mental calculations, developed by Jakow Trachtenberg
+        </p>
+        <div class="flex justify-center gap-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21.16 8.16a9 9 0 0 1-1.15 4.09l-1.4-1.4a6.78 6.78 0 0 0 .38-2.92l2.17.23z"></path>
+            <path d="M14.34 14.34a9 9 0 0 1-2.16 1.4l-.23-2.17a6.78 6.78 0 0 0 2.92-.38l1.4 1.4z"></path>
+            <path d="M9 21.16a9 9 0 0 1-4.09-1.15l1.4-1.4A6.78 6.78 0 0 0 9 19l.23 2.17z"></path>
+            <path d="M3.84 15.84a9 9 0 0 1-1.15-4.09l2.17.23A6.78 6.78 0 0 0 5 14.92l-1.4 1.4z"></path>
+            <path d="M12 3v18"></path>
+            <path d="M3 12h18"></path>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-secondary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+            <line x1="8" y1="9" x2="16" y2="9"></line>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+            <line x1="8" y1="15" x2="16" y2="15"></line>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Key Features -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="card bg-primary text-primary-content">
+      <div class="card-body">
+        <h2 class="card-title">Speed</h2>
+        <p>Perform calculations faster than traditional methods</p>
+      </div>
+    </div>
+    <div class="card bg-secondary text-secondary-content">
+      <div class="card-body">
+        <h2 class="card-title">Mental Math</h2>
+        <p>No paper or calculator needed</p>
+      </div>
+    </div>
+    <div class="card bg-accent text-accent-content">
+      <div class="card-body">
+        <h2 class="card-title">Simple Rules</h2>
+        <p>Easy-to-learn techniques for complex calculations</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Collapsible Sections -->
+  <div class="space-y-4">
+    <!-- Introduction -->
+    <div class="collapse collapse-arrow bg-base-200" [class.collapse-open]="openSection === 'intro'">
+      <div class="collapse-title text-xl font-medium" (click)="toggleSection('intro')">
+        Introduction to Trachtenberg System
+      </div>
+      <div class="collapse-content">
+        <p class="mb-4">
+          The Trachtenberg System is a method of rapid mental calculation developed by Jakow Trachtenberg
+          while he was in a Nazi concentration camp. It provides methods for performing arithmetic operations
+          quickly without using multiplication tables beyond 5 × 5.
+        </p>
+      </div>
+    </div>
+
+    <!-- Basic Rules -->
+    <div class="collapse collapse-arrow bg-base-200" [class.collapse-open]="openSection === 'rules'">
+      <div class="collapse-title text-xl font-medium" (click)="toggleSection('rules')">
+        Basic Rules
+      </div>
+      <div class="collapse-content">
+        <div class="space-y-4">
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h3 class="card-title">Multiplication by 11</h3>
+              <p>1. Look at the right-most digit</p>
+              <p>2. Add adjacent digits</p>
+              <p>3. Look at the left-most digit</p>
+              <button
+                class="btn btn-primary mt-4"
+                (click)="toggleExample()"
+              >
+                See Example
+              </button>
+
+              <div *ngIf="showExample" class="mt-4 p-4 bg-base-200 rounded-lg">
+                <h4 class="font-bold mb-2">Example: 12 × 11</h4>
+                <p *ngFor="let step of examples[0].steps" class="mb-2">
+                  {{step}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Practice Section -->
+    <div class="collapse collapse-arrow bg-base-200" [class.collapse-open]="openSection === 'practice'">
+      <div class="collapse-title text-xl font-medium" (click)="toggleSection('practice')">
+        Practice Exercises
+      </div>
+      <div class="collapse-content">
+        <div class="card bg-base-100">
+          <div class="card-body">
+            <h3 class="card-title">Try These Examples</h3>
+            <div class="space-y-4">
+              <!-- Exercise Cards -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Multiplication by 11 -->
+                <div class="card bg-base-200">
+                  <div class="card-body">
+                    <h4 class="card-title text-lg">Multiplication by 11</h4>
+                    <p class="mb-4">Practice the basic technique with single and double-digit numbers.</p>
+                    <div class="card-actions">
+                      <button class="btn btn-primary btn-block" (click)="startPractice('mult11')">
+                        Start Practice
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Multiplication by 12 -->
+                <div class="card bg-base-200">
+                  <div class="card-body">
+                    <h4 class="card-title text-lg">Multiplication by 12</h4>
+                    <p class="mb-4">Learn the special pattern for multiplying by 12.</p>
+                    <div class="card-actions">
+                      <button class="btn btn-primary btn-block" (click)="startPractice('mult12')">
+                        Start Practice
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Advanced Problems -->
+                <div class="card bg-base-200">
+                  <div class="card-body">
+                    <h4 class="card-title text-lg">Advanced Problems</h4>
+                    <p class="mb-4">Challenge yourself with larger numbers and combined techniques.</p>
+                    <div class="card-actions">
+                      <button class="btn btn-primary btn-block" (click)="startPractice('advanced')">
+                        Start Challenge
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Interactive Demo -->
+                <div class="card bg-base-200">
+                  <div class="card-body">
+                    <h4 class="card-title text-lg">Interactive Demo</h4>
+                    <p class="mb-4">Watch step-by-step solutions with detailed explanations.</p>
+                    <div class="card-actions">
+                      <button class="btn btn-primary btn-block" (click)="startPractice('demo')">
+                        Start Demo
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Progress Track -->
+              <div class="mt-6 p-4 bg-base-300 rounded-lg">
+                <h4 class="font-bold mb-4">Your Progress</h4>
+                <div class="grid grid-cols-2 gap-4">
+                  <!-- Progress Bars -->
+                  <div>
+                    <div class="text-sm mb-2">Multiplication by 11</div>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                      <div class="bg-primary h-2.5 rounded-full" [style.width]="'60%'"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="text-sm mb-2">Multiplication by 12</div>
+                    <div class="w-full bg-gray-700 rounded-full h-2.5 mb-4">
+                      <div class="bg-primary h-2.5 rounded-full" [style.width]="'40%'"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Stats Summary -->
+                <div class="stats stats-vertical lg:stats-horizontal shadow w-full mt-4">
+                  <div class="stat">
+                    <div class="stat-title">Problems Solved</div>
+                    <div class="stat-value">89</div>
+                    <div class="stat-desc">↗︎ 45 (30%)</div>
+                  </div>
+
+                  <div class="stat">
+                    <div class="stat-title">Accuracy</div>
+                    <div class="stat-value">85%</div>
+                    <div class="stat-desc">↗︎ 5%</div>
+                  </div>
+
+                  <div class="stat">
+                    <div class="stat-title">Time/Problem</div>
+                    <div class="stat-value">12s</div>
+                    <div class="stat-desc">↘︎ 2s</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
