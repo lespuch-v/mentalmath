@@ -67,11 +67,11 @@
 
 .div7 {
   width: 350px;
-  height: auto; /* Changed from fixed height to auto */
+  height: auto;
   min-height: 250px;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Changed from center to flex-start */
+  align-items: flex-start;
   flex-direction: column;
   padding: 1rem;
   background-color: var(--base-200, #2a303c);
